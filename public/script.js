@@ -2,7 +2,14 @@
         var client_secret = "982bf3509f9d4cb592edd865122d9a6d"; // Your secret
         var redirect_uri = "http://localhost:8888"; // Your redirect uri
 
-        var showBlock = '<div id="showID" class="container-fluid well show-block">' + 
+        var params = getHashParams();
+
+        var access_token = params.access_token,
+          refresh_token = params.refresh_token,
+          error = params.error;
+
+
+        var showBlock = '<div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id)">' + 
         			'<img id="podCover">' +
                     '<span>Spotify show</span>' +
                     '<div class="dropdown">' +
@@ -64,7 +71,7 @@
             $("#thisShow").remove();
             sortedPods.forEach(function(element) {
             	var currentPod = showBlock.replace('<span>Spotify show</span>', "<span>" + element.show.name + "</span>");
-            	currentPod = currentPod.replace('<div id="showID" class="container-fluid well show-block">', '<div id="' + element.show.id + '" class="container-fluid well show-block">' )
+            	currentPod = currentPod.replace('<div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id)">', '<div id="' + element.show.id + '" class="container-fluid well show-block" onclick="getEpisodes(this.id)">' )
               	currentPod = currentPod.replace('<img id="podCover">', '<img src="' + element.show.images[2].url + '" id="podCover">');
               $("#podcastList").append(currentPod);
               podNum++;
@@ -73,13 +80,21 @@
         });
       }
 
+      function getEpisodes(showID) {
+      	$.ajax({
+      		url: "https://api.spotify.com/v1/shows/" + showID + "/episodes",
+      		headers: {
+      			Authorization: "Bearer " + access_token
+      		},
+
+      		success: function(response) {
+      			console.log(response);
+      		}
+      	})
+      }
+
       $("document").ready(function() {
-        var params = getHashParams();
-
-        var access_token = params.access_token,
-          refresh_token = params.refresh_token,
-          error = params.error;
-
+        
         if (error) {
           alert("Problem");
         } else {
