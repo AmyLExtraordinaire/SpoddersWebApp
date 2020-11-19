@@ -45,8 +45,9 @@
 }
 
 #show-block {
-    background-color: inherit;
+    background-color: grey;
     border: none;
+    color: black;
 }
 
 #show-block button {
