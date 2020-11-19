@@ -7,7 +7,7 @@
     --bkgrnd-grey1: #404040;
     --bkgrnd-grey2: #262626;
     --bkgrnd-grey3: #1D1D1D;
-    --debug: #FF000050;
+    --debug: #FF000000;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -19,7 +19,11 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-    height: 450px
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    width: 100%;
+    background-color: var(--debug);
 }
 
 /* Set gray background color and 100% height */
@@ -45,9 +49,8 @@
 }
 
 #show-block {
-    background-color: grey;
+    background-color: inherit;
     border: none;
-    color: black;
 }
 
 #show-block button {

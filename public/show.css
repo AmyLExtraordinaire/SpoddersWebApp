@@ -1,0 +1,26 @@
+.theShow {
+	width: 100%;
+	height: 200px;
+	background-color: var(--debug);
+	display: inline-block;
+}
+
+.theShow #pic{
+	float: left;
+	height: 200px;
+	width: 200px;
+	background-color: var(--debug);
+}
+#pic img {
+	position: center;
+	--sz: 100%;
+	height: var(--sz);
+	width: var(--sz);
+	padding: 10%;
+}
+
+.theShow #text {
+	display: inline-block;
+	background-color: var(--debug);
+	height: 200px;
+}
