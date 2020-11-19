@@ -62,9 +62,7 @@
             let podNum = 0;
             $("#thisShow").remove();
             sortedPods.forEach(function(element) {
-            	console.log(element.show.name);
-            	var currentPod = showBlock.replace('<span id="thisShow">Spotify show</span>', "<span id='show-" + podNum + "'>" + element.show.name + "</span>");
-            	console.log(currentPod);
+            	var currentPod = showBlock.replace('<span id="thisShow">Spotify show</span>', "<span id='" + element.show.id + "'>" + element.show.name + "</span>");
               $("#podcastList").append(currentPod);
               podNum++;
             });
