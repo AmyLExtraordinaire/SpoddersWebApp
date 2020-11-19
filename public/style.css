@@ -1,0 +1,73 @@
+
+:root {
+    --text-grey: #7E7B7B;
+    --text-white: #F2F2F2;
+    --green: #00B050;
+    --blue: #4472C4;
+    --bkgrnd-grey1: #404040;
+    --bkgrnd-grey2: #262626;
+    --bkgrnd-grey3: #1D1D1D;
+    --debug: #FF000050;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border: none;
+    background-color: inherit;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    height: 100%;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+.dropdown{
+    display: inline-block;
+    background-color: inherit;
+}
+
+#show-block {
+    background-color: inherit;
+    border: none;
+}
+
+#show-block button {
+    background-color: var(--bkgrnd-grey2);
+    border: none;
+    color: var(--text-white);
+}
+
+#show-block .dropdown-menu {
+    background-color: var(--bkgrnd-grey1);
+    border: none;
+}
+
+#show-block .dropdown a {
+    background-color: var(--bkgrnd-grey1);
+    border: none;
+    color: var(--text-white);
+}
+
+body {
+    font-family: Arial;
+    background-color: var(--bkgrnd-grey3);
+    color: var(--text-grey);
+}
