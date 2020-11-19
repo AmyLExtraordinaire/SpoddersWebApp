@@ -2,8 +2,9 @@
         var client_secret = "982bf3509f9d4cb592edd865122d9a6d"; // Your secret
         var redirect_uri = "http://localhost:8888"; // Your redirect uri
 
-        var showBlock = '<div id="show-block"  class="container-fluid well">' + 
-                    '<span id="thisShow">Spotify show</span>' +
+        var showBlock = '<div id="showID" class="container-fluid well show-block">' + 
+        			'<img id="podCover">' +
+                    '<span>Spotify show</span>' +
                     '<div class="dropdown">' +
                         '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By' +
                         '<span class="caret"></span></button>' +
@@ -62,7 +63,9 @@
             let podNum = 0;
             $("#thisShow").remove();
             sortedPods.forEach(function(element) {
-            	var currentPod = showBlock.replace('<span id="thisShow">Spotify show</span>', "<span id='" + element.show.id + "'>" + element.show.name + "</span>");
+            	var currentPod = showBlock.replace('<span>Spotify show</span>', "<span>" + element.show.name + "</span>");
+            	currentPod = currentPod.replace('<div id="showID" class="container-fluid well show-block">', '<div id="' + element.show.id + '" class="container-fluid well show-block">' )
+              	currentPod = currentPod.replace('<img id="podCover">', '<img src="' + element.show.images[2].url + '" id="podCover">');
               $("#podcastList").append(currentPod);
               podNum++;
             });
