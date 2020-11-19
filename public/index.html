@@ -54,6 +54,16 @@
 
 <body>
 
+    <div class="loginPage">
+      <h1>
+        Login With Spotify Authorization!
+      </h1>
+      <br />
+      <button id="loginButton" onclick="authorize()">
+        Take me to Spotify
+      </button>
+    </div>
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -80,12 +90,12 @@
 
     <div class="container-fluid text-center">
         <div class="row content">
-            <div class="col-sm-3 sidenav text-left">
+            <div class="col-sm-3 sidenav text-left" id="podcastList">
 
                 <!-- Can copy and paste this for multiple shows, arrange however we want with code 
                     and connect specific parts of the js to this with the drop down functions
                 -->
-                <div id="show-block"  class="container-fluid well">
+                <!--<div id="show-block"  class="container-fluid well">
                     <span>Spotify show</span>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By
@@ -105,7 +115,7 @@
                         <li><a href="#">4</a></li>
                       </ul>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="col-sm-5 text-left">
                 <div class=""></div>
@@ -124,7 +134,7 @@
     <footer class="container-fluid text-center">
         <p>Footer Text</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
