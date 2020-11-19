@@ -78,6 +78,7 @@
 
 .draggableTile .draggableTileContent {  /* this exists only so that we can have padding without messing up height calculations of tile */
     padding: 8px;
+    text-align: left;
 }
 
 .scrubber {
