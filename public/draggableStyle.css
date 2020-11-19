@@ -1,0 +1,93 @@
+body {
+    margin: 0px;
+}
+
+#rightPanel {
+    color: white;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#myQueueHeader {
+    font-weight: bold;
+    font-size: 32px;
+    height: 40;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#exportQueueContainer {
+    background-color: black;
+    height: 48px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#exportQueueButton {
+    font-weight: bold;
+    font-size: 32px;
+    height: 48px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    vertical-align: middle;
+    
+    background-color: gray;
+    transition-duration: 0.4s;
+}
+
+#exportQueueButton:hover {
+    background-color: white;
+}
+
+#rightPanelDivider {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-color: rgb(127, 127, 127)
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+#draggableContainer {
+    overflow-y: scroll;
+    height: 100% -48px;
+    position: absolute;
+    top: 40px;
+    bottom: 48px;
+    width: 100%;
+}
+
+.draggableTile {
+    background-color: rgb(63, 63, 63);
+    color: white;
+    position: relative;  /* only in order to make z-index used */
+    font-weight: bold;
+    clear: both;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 0px;  /* any padding will screw up height calculation */
+}
+
+.draggableTile .draggableTileContent {  /* this exists only so that we can have padding without messing up height calculations of tile */
+    padding: 8px;
+}
+
+.scrubber {
+    cursor: ns-resize;
+    float: right;
+    width: 50px;
+    height: 20px;
+}
