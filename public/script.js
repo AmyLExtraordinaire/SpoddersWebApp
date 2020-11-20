@@ -32,6 +32,8 @@
                     '</div>' +
                 '</div>';
 
+        var episodeBlock = $("#episodeList").html();
+
       function getHashParams() {
         var hashParams = {};
         var e,
@@ -44,7 +46,7 @@
       }
 
       function authorize() {
-        var scope = 'user-read-private user-read-email';
+        var scope = 'user-read-private user-read-email user-library-read';
 
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
@@ -88,9 +90,11 @@
       		},
 
       		success: function(response) {
-      			console.log(response);
+      			var changedEpisodes = episodeBlock.replace("Title", response.items[0].name);
+      			changedEpisodes = changedEpisodes.replace("Add Podcast", response.items[0].description);
+            $("#episodeList").html(changedEpisodes);
       		}
-      	})
+      	});
       }
 
       $("document").ready(function() {
@@ -104,4 +108,7 @@
             getUserPodcasts(access_token);
           }
         }
+        
+        episodeBlock = document.getElementById("episodeList").innerHTML;
+
       });
