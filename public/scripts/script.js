@@ -38,13 +38,11 @@
                                 '\t\t\t<div id="blue">&#9679</div>\n' +
                                 '\t\t\t Titlehere\n' +
                             '\t\t</div>\n' +
+                            '\t\t<div id="tS-duration">DUR.</div>\n' +
+                            '\t\t<div id="tS-released">RELEASED</div>\n' +
+                            '\t\t<br>\n' +
                             '\t\t<div id="description">DESCRIPTION</div>\n' +
                         '\t</div>\n' +
-                        '\t<div id="tS-progress" class="tS-shift">\n' +
-                            '<div id="prog-bar"><div id="comp"></div></div>\n' +
-                        '\t</div>\n' +
-                        '\t<div id="tS-released" class="tS-shift">RELEASED</div>\n' +
-                        '\t<div id="tS-duration" class="tS-shift">DUR.</div>\n' +
                     '</div>\n' +
                     '<hr class="theCast-line" id="theCast-line">\n\n';
 
@@ -106,7 +104,7 @@
             let podNum = 0;
             $("#thisShow").remove();
             sortedPods.forEach(function(element) {
-            	var currentPod = showBlock.replace('<span>Spotify show</span>', "<span>" + element.show.name + "</span>");
+            	var currentPod = showBlock.replace('<span class="spotShow">Spotify show</span>', "<span class='spotShow'>"+ element.show.name + "</span>");
             	currentPod = currentPod.replace('<div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id, showName)">',
                 '<div id="' + element.show.id + '" class="container-fluid well show-block" ' +
                 'onclick="getEpisodes(this.id, \'' + String(element.show.name) + '\', \'' + String(element.show.total_episodes) + '\', \'' + String(element.show.publisher) + '\')">' );
