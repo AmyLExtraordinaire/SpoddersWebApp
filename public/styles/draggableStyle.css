@@ -1,48 +1,54 @@
+.col-sm-4 {
+    padding-top: 0;
+}
+
 #rightPanel {
-    color: white;
+    color: var(--text-white);
     font-family: Arial, Helvetica, sans-serif;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    height: 100%;
     width: 100%;
 }
 
 #myQueueHeader {
     font-weight: bold;
-    font-size: 32px;
-    height: 40;
+    font-size: calc(var(--ft-sz)*2); /*Set the font to 2 times the default font "--ft-sz" in style.css which is 16px*/
+    height: 40px;
     text-align: center;
     display: block;
-    position: absolute;
-    top: 0;
+    /*position: absolute;
+    top: 0;*/
     width: 100%;
 }
 
 #exportQueueContainer {
-    background-color: black;
+    background-color: var(--debug);
     height: 48px;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;
+    bottom: 0;*/
     display: flex;
     justify-content: center;
 }
 
 #exportQueueButton {
     font-weight: bold;
-    font-size: 32px;
+    font-size: calc(var(--ft-sz)*2); /*Set the font to 2 times the default font "--ft-sz" in style.css which is 16px*/
     height: 48px;
     width: 100%;
     text-align: center;
     display: block;
     vertical-align: middle;
     
-    background-color: gray;
+    background-color: var(--bkgrnd-grey2);
     transition-duration: 0.4s;
+    border: none;
+    border-radius: 20px;
+    color: var(--text-grey);
 }
 
 #exportQueueButton:hover {
-    background-color: white;
+    background-color: var(--bkgrnd-grey1);
+    color: var(--text-white);
 }
 
 #rightPanelDivider {
@@ -57,23 +63,30 @@
 }
 
 #draggableContainer {
-    overflow-y: scroll;
-    height: 100% -48px;
-    position: absolute;
+    overflow-y: auto;
+    height: calc(100% - 40px - 48px - 16px);
+    /*position: absolute;
     top: 40px;
-    bottom: 48px;
+    bottom: 48px;*/
     width: 100%;
 }
 
 .draggableTile {
-    background-color: rgb(63, 63, 63);
-    color: white;
+    /*background-color: rgb(63, 63, 63);
+    color: white;*/
+    background-color: var(--bkgrnd-grey23);
+    color: var(--text-grey);
     position: relative;  /* only in order to make z-index used */
-    font-weight: bold;
+    font-weight: normal;/*bold*/;
     clear: both;
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 0px;  /* any padding will screw up height calculation */
+    width: 100%;
+}
+
+.draggableTile:hover {
+    color: var(--text-white);
 }
 
 .draggableTile .draggableTileContent {  /* this exists only so that we can have padding without messing up height calculations of tile */

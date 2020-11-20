@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="show.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/show.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/podcast_shows.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -39,19 +40,22 @@
         </div>
     </nav>
 
+    <hr class="nav-line">
+
     <div class="container-fluid text-center">
         <div class="row content">
             <div class="col-sm-3 sidenav text-left" id="podcastList">
 
-                <!-- Can copy and paste this for multiple shows, arrange however we want with code 
+                <!--Can copy and paste this for multiple shows, arrange however we want with code 
                     and connect specific parts of the js to this with the drop down functions
                 -->
-                <!--<div id="show-block"  class="container-fluid well">
-                    <span>Spotify show</span>
+                <div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id, showName)"> 
+                    <img id="podCover" src="" onerror=this.src="images/show.jpg">
+                    <span class="spotShow">Spotify show</span><br>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By
                         <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu"> 
                             <li><a href="#">Newest to oldest</a></li>
                             <li><a href="#">Oldest to newest</a></li>
                         </ul>
@@ -66,31 +70,49 @@
                         <li><a href="#">4</a></li>
                       </ul>
                     </div>
-                </div>-->
+                </div>
             </div>
             <div class="col-sm-5 text-left" id="episodeList">
-                <div class="theShow">
-                    <div id="pic"><img src=""></div>
-                    <div id="text">
-                        Podcast<br><h1>Title</h1><br>
-                        By (channel)<br>
-                        (Year) &#9679 (#) Songs, (Total Play Length)
-                        <div id="add">Add Podcast</div>&#9654
+                <div class="theShow" id="theCover">
+                    <div id="theShow-info">
+                        <div id="theShow-pic">
+                            <img src="" onerror=this.src="images/show.jpg">
+                        </div>
+                        <div id="text">
+                            Podcast<br>
+                            <div id="tS-bold">Login to View Podcast</div>
+                            By (channel)<br>
+                            (Year) &#9679 (#) Songs, (Total Play Length)<br>
+                            <div id="tS-add">Add Podcast</div> &#9656
+                        </div>
                     </div>
                 </div>
-                <hr id="theShow-line">
-                <div id="theShow-cast-header">TITLE, PROGRESS, RELEASED, DUR.</div>
-                <hr id="theShow-line">
+                <hr class="theShow-line">
+                <div id="theShow-cast-header">
+                    <div class="tS-title">TITLE</div>
+                    <div id="tS-progress">PROGRESS</div>
+                    <div id="tS-released">RELEASED</div>
+                    <div id="tS-duration">DUR.</div>
+                </div>
+                <hr class="theShow-line">
 
-                <!--The next 8 lines should be one for each podcast-->
                 <div id="thePodcast">
-                    <div id="aPodcast">
-                        Title<br>
-                        Descriotion 1<br>
-                        Descriotion 2<br>
+                    <div class="aPodcast">
+                        <div class="tS-title">
+                            <div id="title">
+                                <div id="blue">&#9679</div>
+                                Halo 4: Epilogue - Ur-Didact standing trial before the council
+                            </div>
+                            <div id="description">In this hour of victory, we taste only defeat. I ask, why? We are Forerunners, guardians of all that exists. The roots of the galaxy have grown deep under our careful tending. Where there is life, the wisdom of our countless generations has saturated the soil. Our strength is a luminous sun, towards which all intelligence blossoms... And the impervious shelter beneath which it has prospered. I stand before you, accused of the sin of ensuring Forerunner ascendancy. Of attempting to save us from this fate where we are forced to... recede. Humanity stands as the greatest threat in the galaxy. Refusing to eradicate them is a fool's gambit. We squander eons in the darkness, while they seize our triumphs for their own. The Mantle of responsibility for all things belongs to Forerunners alone. Think of my acts as you will. But do not doubt the reality: the Reclamation... has already begun. And we are hopeless to stop it.</div>
+                        </div>
+                        <div id="tS-progress" class="tS-shift">
+                            <div id="prog-bar"><div id="comp"></div></div>
+                        </div>
+                        <div id="tS-released" class="tS-shift">RELEASED</div>
+                        <div id="tS-duration" class="tS-shift">DUR.</div>
                     </div>
+                    <hr class="theCast-line" id="theCast-line">
                 </div>
-                <hr id="theShow-line">
 
 
             </div>
@@ -103,7 +125,7 @@
                     </div>
         
                     <div id="draggableContainer">
-                        <link rel="stylesheet" href="draggableStyle.css">
+                        <link rel="stylesheet" href="styles/draggableStyle.css">
                     
                         <div class="draggableTile">
                             <div class="draggableTileContent">
@@ -196,7 +218,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

@@ -6,8 +6,29 @@
     --blue: #4472C4;
     --bkgrnd-grey1: #404040;
     --bkgrnd-grey2: #262626;
+    --bkgrnd-grey23: #262626;
     --bkgrnd-grey3: #1D1D1D;
     --debug: #FF000000;
+    --ft-sz: 16px;
+}
+
+::-webkit-scrollbar {
+    width: calc(var(--ft-sz)/1.5);
+}
+::-webkit-scrollbar-track {
+  background: #00000000;
+  border-radius: calc(var(--ft-sz)/3);
+  border-top: 3px solid var(--text-white);
+  border-bottom: 3px solid var(--text-white);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--bkgrnd-grey1);
+  border-radius: calc(var(--ft-sz)/3);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-grey);
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -30,6 +51,7 @@
 .sidenav {
     padding-top: 20px;
     height: 100%;
+    background-color: var(--debug);
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -43,35 +65,22 @@
         height: auto;
     }
 }
-.dropdown{
-    display: inline-block;
-    background-color: inherit;
-}
-
-#show-block {
-    background-color: inherit;
-    border: none;
-}
-
-#show-block button {
-    background-color: var(--bkgrnd-grey2);
-    border: none;
-    color: var(--text-white);
-}
-
-#show-block .dropdown-menu {
-    background-color: var(--bkgrnd-grey1);
-    border: none;
-}
-
-#show-block .dropdown a {
-    background-color: var(--bkgrnd-grey1);
-    border: none;
-    color: var(--text-white);
-}
 
 body {
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bkgrnd-grey3);
     color: var(--text-grey);
+    font-size: var(--ft-sz);
+}
+
+hr.nav-line {
+    height: 1px;
+    background-color: var(--bkgrnd-grey1);
+    border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    top: -1px;
 }
