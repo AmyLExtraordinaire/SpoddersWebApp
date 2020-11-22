@@ -1,5 +1,3 @@
-//actual website script
-
 var express = require('express');
 var app = express();
 
