@@ -100,3 +100,7 @@
     width: 50px;
     height: 20px;
 }
+
+#displaylock {
+    background-color: #000;
+}

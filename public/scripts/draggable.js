@@ -65,7 +65,7 @@ function SkylabSortableListCore( listElem ) {
    */
   
     var ACHIEVED = true;
-    var debug = true;
+    var debug = false;
     var __shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";
     var __moment = 0.2;  // ~ cheeky names for amount of time
     var waltz = 0.35;
@@ -160,7 +160,7 @@ function SkylabSortableListCore( listElem ) {
       function __dragSessionIsNotAlreadyStarted() {
   
         var drg = Draggable.get( movingTile );
-        if ( drg ) {
+        if ( drg && debug) {
           ok = error( "drag already in session? ignoring touch." );
         } else {
           ok = ACHIEVED;
