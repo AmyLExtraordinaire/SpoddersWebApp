@@ -52,12 +52,13 @@ function pushToQueue() {
 
         let theURL = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks?uris="
         exportArray.forEach(function(o) {
-          if(o) {
+          if(o && o != "draggable_js") {
+            console.log(o);
             theURL += "spotify:episode:" + o + ","
           }
         })
         $.ajax({
-          type: "POST",
+          type: "PUT",
           url: theURL,
           headers: {
             Authorization: "Bearer " + access_token,
@@ -80,12 +81,12 @@ function pushToQueue() {
 
         let theURL = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks?uris="
         exportArray.forEach(function(o) {
-          if(o) {
+          if(o && o != "draggable_js") {
             theURL += "spotify:episode:" + o + ","
           }
         })
         $.ajax({
-          type: "POST",
+          type: "PUT",
           url: theURL,
           headers: {
             Authorization: "Bearer " + access_token,
