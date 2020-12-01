@@ -67,6 +67,7 @@ var theShowBlock = '<div id="theShow-info">\n' +
             '</div>\n' +
         '</div>';
 
+<<<<<<< Updated upstream
 // Block for episode in draggable queue
 var dragBlock = '<div class="draggableTile">' +
           '<div class="draggableTileContent">'+
@@ -78,6 +79,17 @@ var dragBlock = '<div class="draggableTile">' +
         '</div>';
 
 // List of months
+=======
+var episodeTile = "<div class='draggableTile' id='episodeID'>" + 
+                            "<div class='draggableTileContent'>" +
+                                "<div class='scrubber'>" +
+                                    "<img src='images/scrubber.png'>" +
+                                "</div>" +
+                                "TempText" +
+                            "</div>" +
+                        "</div>"
+
+>>>>>>> Stashed changes
 var months = [
   "Jan",
   "Feb",
@@ -186,6 +198,24 @@ function getUserPodcasts(access_token) {
        */
       let first = $("#" + sortedPods[0].show.id);
       first.trigger("onclick");
+
+      sortedPods.forEach(function(element) {
+        $.ajax({
+          url: "https://api.spotify.com/v1/shows/" + element.show.id + "/episodes?limit=5",
+          headers: {
+            Authorization: "Bearer " + access_token,
+          },
+
+          success: function(response) {
+            let episodeArray = response.items;
+            episodeArray.forEach(function(el) {
+              let tempTile = episodeTile.replace("id='episodeID'", "id='" + el.id + "'");
+              tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
+              $("#draggableContainer").append(tempTile);
+            })
+          }
+        });
+      });
     },
   });
 }
@@ -291,10 +321,11 @@ $("document").ready(function () {
     alert("Problem");
   } else {
     if (access_token) {
-      $(".loginPage").hide();
+      //$(".loginPage").hide();
 
       // add user podcasts to DOM
       getUserPodcasts(access_token);
+      document.getElementById("loginButton").style.display = "none";
     }
   }
 
