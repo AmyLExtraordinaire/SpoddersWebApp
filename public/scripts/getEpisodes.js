@@ -32,6 +32,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                     <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected to queue</div>
                     <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add all to queue</div>
                     <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove all from queue</div>
+                    <div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div>
                 </div>
                 <br>Priority: <u>unknown</u>, Sorted by <u>nothing</u>
             </div>
@@ -176,18 +177,18 @@ function rightclickmenue(id) {
 
 	if ($("#" + id + ".aPodcast").find("#green").css("display") == "none") {
 		$("#manip")[0].innerText = "Add to My Queue";
-		$("#select").css("display", "block");
+		//$("#select").css("display", "block");
 	}
 	else {
 		$("#manip")[0].innerText = "Remove from My Queue";
-		$("#select").css("display", "none");
+		//$("#select").css("display", "none");
 	}
 	if ($("#" + id + ".aPodcast").find("#yellow").css("display") == "none") {
-		$("#select")[0].innerText = "Select podcast";
+		//$("#select")[0].innerText = "Select podcast";
 		$("#manip").css("display", "block");
 	}
 	else {
-		$("#select")[0].innerText = "Deselect Podcast";
+		//$("#select")[0].innerText = "Deselect Podcast";
 		$("#manip").css("display", "none");
 	}
 	menue.css("display", "block");
@@ -275,10 +276,11 @@ document.getElementById("manip").addEventListener("click", e => {
 	$("#draggable_js")[0].innerHTML = drag_js;
 })
 
-document.getElementById("select").addEventListener("click", e => {
+//document.getElementById("select").addEventListener("click", e => {
+function selectCast(id) {
 	let menue = $("#rightClick");
 	menue.css("display", "none");
-	let id = menue.eq(0).attr("name");
+	//let id = menue.eq(0).attr("name");
 	//console.log($("#" + id + ".aPodcast"));
 
 	let ep = $("#" + id + ".aPodcast");
@@ -291,7 +293,7 @@ document.getElementById("select").addEventListener("click", e => {
 	else {
 		signal.css("display", "none");
 	}
-})
+}
 
 
 function addMenue() {
@@ -463,4 +465,19 @@ function selectAll() {
 			signal2.css("display", "none");
 		}
 	}
+}
+
+function clearQueue() {
+	let eps = $(".draggableTile");
+	//console.log(eps);
+	//console.log(eps);
+	$("#draggable_js")[0].innerHTML = "";
+	let j = 0;
+	for (let i = 0; i < eps.length; i++) {
+		//let signal = eps.eq(i).find("#green");
+		//console.log(signal);
+		//console.log(eps.eq(i)[0].id)
+		$("#" + eps.eq(i)[0].id + ".draggableTile").remove();
+	}
+	setTimeout(function() { $("#draggable_js")[0].innerHTML = drag_js; }, 1020*(j+1));
 }
