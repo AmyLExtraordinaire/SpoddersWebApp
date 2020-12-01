@@ -45,15 +45,15 @@ function pushToQueue() {
           },
           data: body,
           success : function(response) {
-            console.log(response)
-            playlistID = response.items.id;
+
+            playlistID = response.id;
 
             body = '{"uris" : [' + exportArray + ']}'
 
         let theURL = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks?uris="
         exportArray.forEach(function(o) {
           if(o && o != "draggable_js") {
-            console.log(o);
+
             theURL += "spotify:episode:" + o + ","
           }
         })
@@ -65,10 +65,10 @@ function pushToQueue() {
             "Content-Type" : "json"
           },
           success : function(response) {
-            console.log(response);
+
           },
           error : function(response) {
-            console.log(response);
+
           }
         })
 
