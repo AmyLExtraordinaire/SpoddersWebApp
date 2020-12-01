@@ -174,6 +174,7 @@ function rightclickmenue(id) {
 
 	//console.log($("#" + id + ".aPodcast").find("#green").css("display"));
 	//console.log(menue[0].innerText);
+	//console.log("what");
 
 	if ($("#" + id + ".aPodcast").find("#green").css("display") == "none") {
 		$("#manip")[0].innerText = "Add to My Queue";
@@ -478,6 +479,7 @@ function clearQueue() {
 		//console.log(signal);
 		//console.log(eps.eq(i)[0].id)
 		$("#" + eps.eq(i)[0].id + ".draggableTile").remove();
+		$("#" + eps.eq(i)[0].id + ".aPodcast").find("#green").css("display", "none");
 	}
 	setTimeout(function() { $("#draggable_js")[0].innerHTML = drag_js; }, 1020*(j+1));
 }

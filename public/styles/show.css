@@ -348,6 +348,7 @@ hr.theCast-line {
 	padding-right: calc(var(--ft-sz)*2/4);
 	border-radius: calc(var(--ft-sz)*0.75);
 	border-top-left-radius: 0;
+	z-index: 50;
 }
 
 #rightClick:hover {

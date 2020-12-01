@@ -23,7 +23,7 @@ var showBlock = '<div id="showID" class="container-fluid well show-block" onclic
     '</div>';
 
 
-var episodeTile = `<div class='draggableTile' id='episodeID'> 
+var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenue('episodeID');"> 
                             <div class='draggableTileContent'>
                                 <div class="dragCover">
                                     <img src="insertPicHere" onerror=this.src="images/show.jpg">
@@ -70,6 +70,7 @@ function getUserPodcasts(access_token) {
       // Loop and add each show in the podcast list to the DOM
       let podNum = 0;
       sortedPods.forEach(function (element) {
+        console.log(element);
         var currentPod = showBlock.replace(
           '<span class="spotShow">Spotify show</span>',
           "<span class='spotShow'>" + element.show.name + "</span>"
@@ -110,7 +111,7 @@ function getUserPodcasts(access_token) {
           success: function(response) {
             let episodeArray = response.items;
             episodeArray.forEach(function(el) {
-              let tempTile = episodeTile.replace("id='episodeID'", "id='" + el.id + "'");
+              let tempTile = episodeTile.replaceAll("episodeID", el.id);
               //tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
               tempTile = tempTile.replace("TempText", el.name);
               tempTile = tempTile.replace("insertPicHere", element.show.images[2].url);
@@ -129,7 +130,7 @@ function getUserPodcasts(access_token) {
              */
             let first = $("#" + sortedPods[0].show.id);
             first.trigger("onclick");
-            
+
           }
         });
       });
