@@ -201,6 +201,8 @@ function manipulateQueue(id, append, text="") {
 	let signal2 = $("#" + id + ".aPodcast").find("#yellow");
 	let title = $("#" + id + ".aPodcast").find("#title")[0].innerText;
 
+	$("#draggable_js").remove();
+
 	if (append) {
 		console.log("Added '" + title + "' to the queue");
 
@@ -216,7 +218,7 @@ function manipulateQueue(id, append, text="") {
 
 		setTimeout(function() {
 			$("#deleteMe").remove();
-		}, 3000);
+		}, 1000);
 	}
 	else {
 		console.log("Removed '" + title.substr(2, title.length) + "' from the queue");
@@ -241,6 +243,8 @@ function manipulateQueue(id, append, text="") {
 		//$("#" + id + ".draggableTile").remove();
 		signal.css("display", "none");
 	}
+
+	$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>');
 }
 
 document.getElementById("manip").addEventListener("click", e => {
