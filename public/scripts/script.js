@@ -67,7 +67,7 @@ var theShowBlock = '<div id="theShow-info">\n' +
             '</div>\n' +
         '</div>';
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 // Block for episode in draggable queue
 var dragBlock = '<div class="draggableTile">' +
           '<div class="draggableTileContent">'+
@@ -79,7 +79,7 @@ var dragBlock = '<div class="draggableTile">' +
         '</div>';
 
 // List of months
-=======
+//=======
 var episodeTile = "<div class='draggableTile' id='episodeID'>" + 
                             "<div class='draggableTileContent'>" +
                                 "<div class='scrubber'>" +
@@ -89,7 +89,7 @@ var episodeTile = "<div class='draggableTile' id='episodeID'>" +
                             "</div>" +
                         "</div>"
 
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 var months = [
   "Jan",
   "Feb",
@@ -213,9 +213,12 @@ function getUserPodcasts(access_token) {
               tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
               $("#draggableContainer").append(tempTile);
             })
+            $("body").append("<script src='scripts/draggable.js'></script>")
+
           }
         });
       });
+
     },
   });
 }
@@ -247,9 +250,9 @@ function getEpisodes(showID, showName, numEps, pub) {
     success: function (response) {
       // Build episode info block and remove template code
       let episodes = response.items;
-      var changedEpisodes = episodeBlock.replace("Title", episodes[0].name);
+      /*ar changedEpisodes = episodeBlock.replace("Title", episodes[0].name);
       			changedEpisodes = changedEpisodes.replace("Add Podcast", episodes[0].description);
-            $("#episodeList").html(changedEpisodes);
+            $("#episodeList").html(changedEpisodes);*/
       
       // Remove template code
       let epNum = 0;
