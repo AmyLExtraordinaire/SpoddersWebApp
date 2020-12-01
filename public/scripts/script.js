@@ -321,6 +321,7 @@ function getEpisodes(showID, showName, numEps, pub) {
 
 //Push Episodes to Queue on Spotify
 function pushToQueue() {
+  
   /*$("#draggableContainer").children().each(function(e) {
     $.ajax({
         type: "POST",
@@ -352,42 +353,80 @@ function pushToQueue() {
       })
       let exportArray = [];
       $("#draggableContainer").children().each(function(i) {
-        exportArray.push("spotify:episode:" + this.id);
+        exportArray.push(this.id);
       })
-      if(usedBefore) {
-        console.log(playlistID + " " + exportArray)
+      if(!usedBefore) {
+        var body = '{"name" : "SKIVINGSKON Playlist"}'
         $.ajax({
-          url: "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks",
+          type: "POST",
+          url: "https://api.spotify.com/v1/users/" + userID + "/playlists",
+         headers: {
+            Authorization: "Bearer " + access_token,
+            "Content-Type": "json"
+          },
+          data: body,
+          success : function(response) {
+            playlistID = response.items.id;
+
+            body = '{"uris" : [' + exportArray + ']}'
+
+        let theURL = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks?uris="
+        exportArray.forEach(function(o) {
+          if(o) {
+            theURL += "spotify:episode:" + o + ","
+          }
+        })
+        $.ajax({
+          type: "POST",
+          url: theURL,
           headers: {
             Authorization: "Bearer " + access_token,
             "Content-Type" : "json"
           },
-          data: {"uris" : exportArray},
           success : function(response) {
-            console.log("pushed?");
+            console.log(response);
+          },
+          error : function(response) {
+            console.log(response);
+          }
+        })
+
+        
+          },
+        
+        })
+      } else {
+        body = '{"uris" : [' + exportArray + ']}'
+
+        let theURL = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks?uris="
+        exportArray.forEach(function(o) {
+          if(o) {
+            theURL += "spotify:episode:" + o + ","
+          }
+        })
+        $.ajax({
+          type: "POST",
+          url: theURL,
+          headers: {
+            Authorization: "Bearer " + access_token,
+            "Content-Type" : "json"
+          },
+          success : function(response) {
+            console.log(response);
           },
           error : function(response) {
             console.log(response);
           }
         })
       }
+
+      
+
+
     }
   })
 
-  var body = '{"name" : "SKIVINGSKON Playlist"}'
-  $.ajax({
-        type: "POST",
-        url: "https://api.spotify.com/v1/users/" + userID + "/playlists",
-        headers: {
-          Authorization: "Bearer " + access_token,
-          "Content-Type": "json"
-        },
-        data: body,
-        success : function(response) {
-          console.log("did it");
-        },
-        
-  })
+  
 }
 
 
