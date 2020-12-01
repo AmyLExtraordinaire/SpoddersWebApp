@@ -1,26 +1,26 @@
 // Block for shows in left column
-var showBlock = '<div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id, showName)">' + 
-  '<img id="podCover">' +
-        '<span class="spotShow">Spotify show</span><br>' +
-        '<div class="dropdown">' +
-            '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By' +
-            '<span class="caret"></span></button>' +
-            '<ul class="dropdown-menu">' + 
-                '<li><a href="#">Newest to oldest</a></li>' +
-                '<li><a href="#">Oldest to newest</a></li>' +
-            '</ul>' +
-        '</div>' +                                          
-        '<div class="dropdown">' +
-          '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Set Priority' +
-          '<span class="caret"></span></button>' +
-          '<ul class="dropdown-menu">' +
-            '<li><a href="#">1</a></li>' +
-            '<li><a href="#">2</a></li>' +
-            '<li><a href="#">3</a></li>' +
-            '<li><a href="#">4</a></li>' +
-          '</ul>' +
-        '</div>' +
-    '</div>';
+var showBlock = `<div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id, showName)">
+  <img id="podCover">
+        <span class="spotShow">Spotify show</span><br>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu"> 
+                <li><a href="#">Newest to oldest</a></li>
+                <li><a href="#">Oldest to newest</a></li>
+            </ul>
+        </div>                                          
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Set Priority
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+          </ul>
+        </div>
+    </div>`;
 
 
 var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenue('episodeID');"> 
