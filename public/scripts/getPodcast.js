@@ -3,11 +3,11 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
   <img id="podCover">
         <span class="spotShow">Spotify show</span><br>
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">New -> Old
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">New &#8594; Old
             <span class="caret"></span></button>
             <ul class="dropdown-menu"> 
-                <li><a href="#">New -> Old</a></li>
-                <li><a href="#">Old -> New</a></li>
+                <li><a href="#">New &#8594; Old</a></li>
+                <li><a href="#">Old &#8594; New</a></li>
             </ul>
         </div>                                          
         <div class="dropdown">
