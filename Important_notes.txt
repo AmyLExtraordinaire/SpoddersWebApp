@@ -1,3 +1,0 @@
-This page for reference in the API
-    - the app is currently called "spodder" (this can be changed)
-    - registered to my (Jake) spotify profile
