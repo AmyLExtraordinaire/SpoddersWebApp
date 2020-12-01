@@ -7,6 +7,7 @@
 var client_id = "5f9e50743acf4e2c8a0cddc3579c816c";  // Your client id
 var client_secret = "982bf3509f9d4cb592edd865122d9a6d"; // Your secret
 var redirect_uri = "http://localhost:8888";  // Your redirect uri
+var userID = "";
 
 var params = getHashParams();
 
@@ -126,7 +127,7 @@ function getHashParams() {
 // desc attempt: Log in spotify user access token?
 // TODO: what does this do?
 function authorize() {
-  var scope = "user-read-private user-read-email user-library-read";
+  var scope = "user-read-private user-read-email user-library-read playlist-modify-public user-modify-playback-state";
 
   var url = "https://accounts.spotify.com/authorize";
   url += "?response_type=token";
@@ -318,6 +319,82 @@ function getEpisodes(showID, showName, numEps, pub) {
   });
 }
 
+//Push Episodes to Queue on Spotify
+function pushToQueue() {
+  /*$("#draggableContainer").children().each(function(e) {
+    $.ajax({
+        type: "POST",
+        url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:episode:" + e.id,
+        headers: {
+          Authorization: "Bearer " + access_token,
+        },
+        success : function(response) {
+          console.log("did it");
+        },
+        error : function(response) {
+          console.log(response);
+        }
+   })
+  })*/
+  let usedBefore = false;
+  let playlistID;
+  $.ajax({
+    url: "https://api.spotify.com/v1/me/playlists",
+    headers: {
+      Authorization: "Bearer " + access_token,
+    },
+    success : function(response) {
+      response.items.forEach(function(e) {
+        if (e.name == "SKIVINGSKON Playlist") {
+          usedBefore = true;
+          playlistID = e.id;
+        }
+      })
+      let exportArray = [];
+      $("#draggableContainer").children().each(function(i) {
+        exportArray.push("spotify:episode:" + this.id);
+      })
+      if(usedBefore) {
+        console.log(playlistID + " " + exportArray)
+        $.ajax({
+          url: "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks",
+          headers: {
+            Authorization: "Bearer " + access_token,
+            "Content-Type" : "json"
+          },
+          data: {"uris" : exportArray},
+          success : function(response) {
+            console.log("pushed?");
+          },
+          error : function(response) {
+            console.log(response);
+          }
+        })
+      }
+    }
+  })
+
+  var body = '{"name" : "SKIVINGSKON Playlist"}'
+  $.ajax({
+        type: "POST",
+        url: "https://api.spotify.com/v1/users/" + userID + "/playlists",
+        headers: {
+          Authorization: "Bearer " + access_token,
+          "Content-Type": "json"
+        },
+        data: body,
+        success : function(response) {
+          console.log("did it");
+        },
+        
+  })
+}
+
+
+
+
+
+
 // Doc ready function
 $("document").ready(function () {
   if (error) {
@@ -327,6 +404,15 @@ $("document").ready(function () {
       //$(".loginPage").hide();
 
       // add user podcasts to DOM
+      $.ajax({
+        url: "https://api.spotify.com/v1/me",
+        headers: {
+          Authorization: "Bearer " + access_token,
+        },
+        success : function(response) {
+          userID = response.id
+        }
+      })
       getUserPodcasts(access_token);
       document.getElementById("loginButton").style.display = "none";
     }
