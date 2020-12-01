@@ -93,7 +93,7 @@ document.getElementById("draggableContainer").addEventListener("mouseleave", fun
 		//console.log(newQueue[i][1][0].outerHTML);
 		container.append(newQueue[i][1][0].outerHTML);
 	}
-	container.append('<script src="scripts/draggable.js"></script>');
+	container.append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>');
 
 	//container.css("opacity", 1);
 	container.prop("disabled", false);

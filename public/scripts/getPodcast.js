@@ -23,14 +23,19 @@ var showBlock = '<div id="showID" class="container-fluid well show-block" onclic
     '</div>';
 
 
-var episodeTile = "<div class='draggableTile' id='episodeID'>" + 
-                            "<div class='draggableTileContent'>" +
-                                "<div class='scrubber'>" +
-                                    "<img src='images/scrubber.png'>" +
-                                "</div>" +
-                                "TempText" +
-                            "</div>" +
-                        "</div>";
+var episodeTile = `<div class='draggableTile' id='episodeID'> 
+                            <div class='draggableTileContent'>
+                                <div class="dragCover">
+                                    <img src="insertPicHere" onerror=this.src="images/show.jpg">
+                                </div>
+                                <div class="dragText">
+                                    TempText
+                                </div>
+                                <div class='scrubber'>
+                                    <img src='images/scrubber.png'>
+                                </div>
+                            </div>
+                        </div>`;
 
 // Block for episode in draggable queue
 /*var dragBlock = '<div class="draggableTile">' +
@@ -93,16 +98,7 @@ function getUserPodcasts(access_token) {
         podNum++;
       });
 
-      // Grabs episodes for first show and displays them
-      /** TODO:
-       * instead of triggering onclick, we should just:
-       * - grab all episodes for every show in sortedPods
-       * - display the first show's things
-       * - modify the "get episodes" function to accept either js or DOM calls
-       *   - accomplish this by putting the ajax calls into a different datastructure
-       */
-      let first = $("#" + sortedPods[0].show.id);
-      first.trigger("onclick");
+      document.getElementById("draggableContainer").innerHTML = ""
 
       sortedPods.forEach(function(element) {
         $.ajax({
@@ -115,15 +111,28 @@ function getUserPodcasts(access_token) {
             let episodeArray = response.items;
             episodeArray.forEach(function(el) {
               let tempTile = episodeTile.replace("id='episodeID'", "id='" + el.id + "'");
-              tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
+              //tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
+              tempTile = tempTile.replace("TempText", el.name);
+              tempTile = tempTile.replace("insertPicHere", element.show.images[2].url);
               $("#draggableContainer").append(tempTile);
             })
-            $("#draggableContainer").append("<script src='scripts/draggable.js'></script>")
+            $("#draggable_js").remove();
+            $("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>');
 
+            // Grabs episodes for first show and displays them
+            /** TODO:
+             * instead of triggering onclick, we should just:
+             * - grab all episodes for every show in sortedPods
+             * - display the first show's things
+             * - modify the "get episodes" function to accept either js or DOM calls
+             *   - accomplish this by putting the ajax calls into a different datastructure
+             */
+            let first = $("#" + sortedPods[0].show.id);
+            first.trigger("onclick");
+            
           }
         });
       });
-
     },
   });
 }

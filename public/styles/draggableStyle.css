@@ -1,5 +1,10 @@
+:root {
+    --dragCoverSize: calc(var(--ft-sz)*3.5);
+    --ScrubberSize: calc(var(--ft-sz)*2);
+}
 .col-sm-4 {
     padding-top: 0;
+    /*background: linear-gradient(0deg, var(--bkgrnd-grey1) 0%, var(--bkgrnd-grey2) 10%, var(--bkgrnd-grey3) 15%, var(--bkgrnd-grey3) 100%);*/
 }
 
 #rightPanel {
@@ -18,6 +23,12 @@
     /*position: absolute;
     top: 0;*/
     width: 100%;
+}
+
+#myQueueHeader hr {
+    height: 1px;
+    background-color: var(--bkgrnd-grey1);
+    border: none;
 }
 
 #exportQueueContainer {
@@ -69,6 +80,8 @@
     top: 40px;
     bottom: 48px;*/
     width: 100%;
+    margin-bottom: 8px;
+    padding-top: 8px;
 }
 
 .draggableTile {
@@ -82,7 +95,7 @@
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 0px;  /* any padding will screw up height calculation */
-    width: 100%;
+    width: 99%;
 }
 
 .draggableTile:hover {
@@ -92,13 +105,42 @@
 .draggableTile .draggableTileContent {  /* this exists only so that we can have padding without messing up height calculations of tile */
     padding: 8px;
     text-align: left;
+    position: relative;
+}
+
+.dragCover {
+    display: inline-block;
+    height: var(--dragCoverSize);
+    width: var(--dragCoverSize);
+}
+
+.dragCover img{
+    width: 100%;
+    height: 100%;
+}
+
+.dragText {
+    position: absolute;
+    display: inline-block;
+    top: calc(8px + var(--ft-sz)*0.5);
+    left: calc(var(--dragCoverSize) + 16px);
+    right: calc(var(--ScrubberSize) + 16px);
+    height: calc(var(--ft-sz)*3);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .scrubber {
     cursor: ns-resize;
-    float: right;
-    width: 50px;
-    height: 20px;
+    /*float: right;*/
+    width: var(--ScrubberSize);
+    height: calc(var(--ScrubberSize)*2/5);
+    display: inline-block;
+    position: absolute;
+    top: calc(50% - var(--ScrubberSize)*2/5);
+    right: calc(16px);
 }
 
 #displaylock {

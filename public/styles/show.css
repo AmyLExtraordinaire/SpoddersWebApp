@@ -15,6 +15,7 @@
 
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .theShow {
@@ -40,7 +41,7 @@
 	background-color: var(--debug);
 }
 
-.theShow #theShow-pic{
+#theShow-pic{
 	display: inline-block;
 	height: calc(var(--ft-sz)*15);;
 	width: auto;
@@ -53,14 +54,14 @@
 	width: auto;
 }
 
-.theShow #text{
+#text{
 	display: inline-block;
 	background-color: var(--debug);
 	height: 100%;
 	color: var(--text-white);
 	font-size: calc(var(--ft-sz) + 0px);
 	margin-left: 2%;
-	margin-left: 2%;
+	margin-right: calc(2% +  var(--ft-sz)*3.5);
 	margin-top: calc(var(--ft-sz)*1);
 	position: relative;
 	left: 2%;
@@ -96,6 +97,7 @@
 	padding-left: 0;
 	overflow-y: auto;
 	overflow-x: hidden;
+	margin-bottom: calc(var(--ft-sz)*1);
 }
 
 
@@ -110,7 +112,10 @@
 	min-height: calc(var(--ft-sz)*4.5);
 	background-color: var(--bkgrnd-grey);
 	position: relative;
-	padding-bottom: 1px;
+	border-radius: calc(var(--ft-sz)*1);
+	margin-bottom: calc(var(--ft-sz)*0.5);
+	padding-top: calc(var(--ft-sz)*0.5);
+	padding-bottom: calc(var(--ft-sz)*0);
 }
 
 .tS-title {
@@ -121,6 +126,7 @@
 	background-color: var(--debug);
 	height: auto;
 	right: 0;
+	border-radius: calc(var(--ft-sz)*1);
 	/*min-width: calc(100% - 4*(var(--ft-sz)*(9.75/16)));*/
 }
 .tS-detail {
@@ -149,7 +155,7 @@
 	display: inline-block;
 	position: absolute;
 	left: calc(var(--ft-sz)/2);
-	right: calc(var(--ft-sz)*6 + var(--col3) - 2%);
+	right: calc(var(--ft-sz)*6 + var(--col3) + 1%);
 	background-color: var(--debug);
 
 	height: calc(var(--ft-sz)*1.5);
@@ -235,7 +241,7 @@ hr.theCast-line {
 #description {
 	max-height: calc(var(--ft-sz)*(var(--detail)*1.25));
 	min-height: calc(var(--ft-sz)*2.5);
-	width: calc(100% - var(--ft-sz)/1.5);
+	width: calc(100% - var(--ft-sz)/1.5 - var(--ft-sz));
 
 	/*display: -webkit-box;
 	-webkit-line-clamp: var(--detail);
@@ -244,18 +250,75 @@ hr.theCast-line {
 	overflow-y: auto;
 	margin-top: calc(var(--ft-sz)*0.25);
 	margin-bottom: calc(var(--ft-sz)*0.25);
-	margin-left: calc(var(--ft-sz)/2);
+	margin-left: calc(var(--ft-sz)*3/2);
 
 	background-color: var(--debug);
 }
 
-#blue {
-	color: var(--blue);
-	display: inline-block;
+#green {
+	color: var(--green);
+	display: none;
+}
+
+#yellow {
+	color: var(--yellow);
+	display: none;
+}
+
+.green {
+	color: var(--green);
+	display: none;
+}
+
+.yellow {
+	color: var(--yellow);
+	display: none;
+}
+
+#select {
+	display: none;
 }
 
 #tS-add {
 	display: inline-block;
+	transform: translate(0, calc(var(--ft-sz)*-0.2*0.6)) scale(0.6);
+	font-size: calc(var(--ft-sz)*0.75);
+	line-height: calc(var(--ft-sz)*2);
+
+	border-radius: calc(var(--ft-sz)*3*1/2);
+	border-color: var(--text-white);
+	border-width: calc(var(--ft-sz)*0.2);
+	border-style: solid;
+
+	padding: calc(var(--ft-sz)/4);
+	width: calc(var(--ft-sz)*3*1);
+	height: calc(var(--ft-sz)*3*1);
+	text-align: center;
+	position: absolute;
+}
+
+#tS-add-hidden {
+	position: absolute;
+	background-color: var(--bkgrnd-grey1);
+	border-radius: calc(var(--ft-sz)*1); 
+	border-style: solid;
+	border-width: calc(var(--ft-sz)*0.1);
+	border-color: var(--text-grey); 
+	display: none;
+	width: auto;
+	white-space: nowrap;
+	z-index: 5;
+}
+
+.hidden-block {
+	margin: calc(var(--ft-sz)*0.1);
+	padding: calc(var(--ft-sz)*0.4);
+}
+
+.hidden-block:hover {
+	background-color: var(--bkgrnd-grey1p5);
+	border-radius: calc(var(--ft-sz)*1);
+	/*box-shadow: inset 0 0 0 calc(var(--ft-sz)*0.0) var(--text-grey);*/
 }
 
 #theTitle {
@@ -272,4 +335,55 @@ hr.theCast-line {
 	margin-left: calc(var(--ft-sz)/2);*/
 	height: calc(var(--ft-sz)*1.5);
 	font-size: calc(var(--ft-sz) + 1px);
+}
+
+#rightClick {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: var(--bkgrnd-grey1);
+	padding: calc(var(--ft-sz)*1/4);
+	padding-left: calc(var(--ft-sz)*2/4);
+	padding-right: calc(var(--ft-sz)*2/4);
+	border-radius: calc(var(--ft-sz)*0.75);
+	border-top-left-radius: 0;
+}
+
+#rightClick:hover {
+	color: var(--text-white);
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+  	opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+  	opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

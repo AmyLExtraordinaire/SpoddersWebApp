@@ -1,3 +1,7 @@
+.col-sm-3 {
+    /*background: linear-gradient(0deg, var(--bkgrnd-grey1) 0%, var(--bkgrnd-grey2) 10%, var(--bkgrnd-grey3) 15%, var(--bkgrnd-grey3) 100%);*/
+}
+
 .dropdown{
     display: inline-block;
     background-color: inherit;

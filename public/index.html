@@ -91,8 +91,15 @@
                             Podcast<br>
                             <div id="tS-bold">Login to View Podcast</div>
                             By (channel)<br>
-                            (Year) &#9679 (#) Songs, (Total Play Length)<br>
-                            <div id="tS-add">Add Podcast</div> &#9656
+                            (#) Songs &#9679 (Total Play Length)
+                            <div id="tS-add" onclick="addMenue()"> &#9679 &#9679 &#9679 </div>
+                            <div id="tS-add-hidden">
+                                <div class="hidden-block" onclick="" id="SA"><div class="yellow">&#9679</div> Select all podcast</div>
+                                <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected to queue</div>
+                                <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add all to queue</div>
+                                <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove all from queue</div>
+                            </div>
+                            <br>Priority: <u>unknown</u>, Sorted by <u>nothing</u>
                         </div>
                     </div>
                 </div>
@@ -109,7 +116,7 @@
                     <div class="aPodcast">
                         <div class="tS-title">
                             <div id="title">
-                                <div id="blue">&#9679</div>
+                                <div id="green">&#9679</div>
                                 Halo 4: Epilogue - Ur-Didact standing trial before the council
                             </div>
                             <div id="tS-released">RELEASED</div>
@@ -137,6 +144,10 @@
                     </div>
                     <hr class="theCast-line" id="theCast-line">
                 </div>
+                    <div id="rightClick">
+                        <div class="rightClickBlock" id="select">Select Episode</div>
+                        <div class="rightClickBlock" id="manip">Do something to Queue</div>
+                    </div>
             </div>
 
             <!-- Right column -->
@@ -154,14 +165,19 @@
                         <!-- TODO: can this go at the top of the doc? -->
 
                         <!-- Copy and pasteable block -->
-                        <!-- <div class="draggableTile">
+                        <div class="draggableTile">
                             <div class="draggableTileContent">
+                                <div class="dragCover">
+                                    <img src="" onerror=this.src="images/show.jpg">
+                                </div>
+                                <div class="dragText">
+                                    Oh, I'm real. Real enough to defeat *you*! And I did it without your precious gifts, your oh-so-special powers. I'll give them heroics. I'll give them the most spectacular heroics anyone's ever seen! And when I'm old and I've had my fun, I'll sell my inventions so that everyone can be superheroes. *Everyone* can be super! And when everyone's super... no one will be.
+                                </div>
                                 <div class='scrubber'>
                                     <img src="images/scrubber.png">
                                 </div>
-                                1 Template text stuff
                             </div>
-                        </div> -->
+                        </div>
 
                     
 
