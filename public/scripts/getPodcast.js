@@ -6,18 +6,18 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">New &#8594; Old
             <span class="caret"></span></button>
             <ul class="dropdown-menu"> 
-                <li><a href="#">New &#8594; Old</a></li>
-                <li><a href="#">Old &#8594; New</a></li>
+                <li class="newToOld"><a href="#">New &#8594; Old</a></li>
+                <li class="oldToNew"><a href="#">Old &#8594; New</a></li>
             </ul>
         </div>                                          
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Priority 1
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Priority 1</a></li>
-            <li><a href="#">Priority 2</a></li>
-            <li><a href="#">Priority 3</a></li>
-            <li><a href="#">Priority 4</a></li>
+            <li class="P1"><a href="#">Priority 1</a></li>
+            <li class="P1"><a href="#">Priority 2</a></li>
+            <li class="P1"><a href="#">Priority 3</a></li>
+            <li class="P1"><a href="#">Priority 4</a></li>
           </ul>
         </div>
     </div>`;
