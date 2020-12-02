@@ -101,9 +101,11 @@ function pushToQueue() {
           }
         })
       }
-      $(".exportText").html("Export Successful! :)");
       setTimeout(() => {
-        $(".exportText").html("Export to Queue")
+        $(".exportText").html("Export Successful! :)");
+        setTimeout(() => {
+          $(".exportText").html("Export to Queue");
+        }, 3000);
       }, 1000);
     }
   })
