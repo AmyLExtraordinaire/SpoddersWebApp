@@ -5,14 +5,29 @@ function changeQueueSettings(showID,showName,option){
     let show = $("#" + showID);
     if(option > 4){
         let menu = show.find(".Sort");
-        if(option === 5){
-            menu.attr("class","btn btn-primary dropdown-toggle Sort NTOSort");
-            menu.html(`New &#8594; Old`);
-        }
-        else{
-        	menu.attr("class","btn btn-primary dropdown-toggle Sort OTNSort");
-            menu.html(`Old &#8594; New`);
-        }
+        let totalEps;
+        $.ajax({
+            url: "https://api.spotify.com/v1/shows/" + showID,
+            headers: {
+      			Authorization: "Bearer " + access_token,
+    		},
+    		success : function(response) {
+    			totalEps = response.total_episodes;
+
+    			if(option === 5){
+            		menu.attr("class","btn btn-primary dropdown-toggle Sort NTOSort");
+            		menu.html(`New &#8594; Old`);
+            
+            		getEpisodes(showID, showName, totalEps, showName, "NTOSort");
+       			}
+        		else{
+        			menu.attr("class","btn btn-primary dropdown-toggle Sort OTNSort");
+            		menu.html(`Old &#8594; New`);
+           			getEpisodes(showID, showName, totalEps, showName, "OTNSort");
+        		}
+    		}
+        })
+        
     }
     else{
         let menu = show.find(".P");

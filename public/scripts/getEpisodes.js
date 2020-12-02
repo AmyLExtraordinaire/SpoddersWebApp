@@ -56,17 +56,29 @@ function ms2time(milisceonds) {
 // Runs every time a podcast on the left window is selected
 // displays (atm the first 20) episodes of that podcast in the middle
 	// and displays the podcast in the header
-function getEpisodes(showID, showName, numberOfEpisodes, podcastBy) {
+function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
+	let sendingURL = "https://api.spotify.com/v1/shows/" + showID + "/episodes";
+
+	if (sortBy == "OTNSort") {
+		sendingURL += "?offset=" + (numberOfEpisodes - 20)
+	}
+
   // Ajax call for show episodes with access token
   $.ajax({
-    url: "https://api.spotify.com/v1/shows/" + showID + "/episodes",
+    url: sendingURL,
     headers: {
       Authorization: "Bearer " + access_token,
     },
     success: function (response) {
 	    // Build episode info block and remove template code
 	    let episodes = response.items;
-	      
+	    let tempSortArray;
+	      if (sortBy == "NTOSort") {
+
+	      	tempSortArray = episodes.sort((a, b) => a.release_date - b.release_date);
+	      } else if (sortBy == "OTNSort") {
+	      	tempSortArray = episodes.reverse();
+	      }
 	    // Removes the template epidode that is in index.html
 	    document.getElementById("thePodcast").innerHTML = "";
 
