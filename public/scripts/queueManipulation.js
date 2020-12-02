@@ -8,11 +8,11 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 	let episodeTitle;
 	// this bit essentially detects if the call came from the queue
 		//in which the episode block has a diffrent structure and therfore requires a diffrent method of getting data from it
-	if (episode.length == 0) {
+	if (episode.length == 0 && verbose) {
 		episode = $("#" + episodeID + ".draggableTile");
 		episodeTitle = episode[0].innerText;
 	}
-	else { // if episode call was from podcast
+	else if (verbose) { // if episode call was from podcast
 		episodeTitle = episode.find("#title")[0].innerText;
 	}
 	// removes the tile gradding js temporarily while changes are made

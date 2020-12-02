@@ -68,11 +68,14 @@ function resortQueue(){
 		
 		$("#draggable_js").remove();
 		for (var i = 0; i < temp.length; i++) {
-			$("#draggableContainer").append(temp[i].replacement)
+			//$("#draggableContainer").append(temp[i].replacement)
+			//console.log((temp[i]).epid)
+			//console.log((temp[i]).replacement)
+			manipulateQueue((temp[i]).epid, true, (temp[i]).replacement)
 		//manipulateQueue(temp[i].epid, true, temp[i].replacement)
 		}
-		
+		//$("#draggable_js").remove()
+		//$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>')
 }, 2000)
-	setTimeout(function() { $("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>') } , 4000)
 
 }
