@@ -36,7 +36,7 @@ function pushToQueue() {
         exportArray.push(this.id);
       })
       if(!usedBefore) {
-        var body = '{"name" : "SKIVINGSKON Playlist"}'
+        var body = '{"name" : "SKINGERSKON Playlist"}'
         $.ajax({
           type: "POST",
           url: "https://api.spotify.com/v1/users/" + userID + "/playlists",
