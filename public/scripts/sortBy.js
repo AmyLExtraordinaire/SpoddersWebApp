@@ -74,8 +74,10 @@ function resortQueue(){
 			manipulateQueue((temp[i]).epid, true, (temp[i]).replacement)
 		//manipulateQueue(temp[i].epid, true, temp[i].replacement)
 		}
-		//$("#draggable_js").remove()
-		//$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>')
+		  
+		$("#draggable_js").remove()
+		$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>')
+		SkylabSortableListCore( $( '#draggableContainer' ) );
 }, 2000)
 
 }
