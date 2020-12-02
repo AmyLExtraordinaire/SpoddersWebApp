@@ -2,7 +2,7 @@
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 // Block for episodes list in the center column
-var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" oncontextmenu="event.preventDefault();rightclickmenue('UNIQUEID');">\n
+var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" oncontextmenu="event.preventDefault();rightclickmenu('UNIQUEID');">\n
             \t<div class="tS-title" id="T-UNIQUEID" >\n
                 \t\t<div id="title">\n
                     \t\t\t<div id="green">&#9679</div><div id="yellow">&#9679</div>\n
@@ -26,7 +26,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                 <div id="tS-bold">P-Title</div>
                 By (channel)<br>
                 (Other Info) &#9679 (#) Songs, (Total Play Length)
-                <div id="tS-add" onclick="addMenue()"> &#9679 &#9679 &#9679 </div>
+                <div id="tS-add" onclick="addmenu()"> &#9679 &#9679 &#9679 </div>
                 <div id="tS-add-hidden">
                     <div class="hidden-block" onclick="selectAll()" id="SA"><div class="yellow">&#9679</div> Select all podcast</div>
                     <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected to queue</div>
@@ -162,19 +162,19 @@ $(window).click(function () {
 	//$("#tS-add-hidden").css("display", "none"); 
 } )
 
-function rightclickmenue(id, force=false) {
-	let menue = $("#rightClick");
-	if (menue.css("display") == "block") { menue.css("display", "none"); return false; }
+function rightclickmenu(id, force=false) {
+	let menu = $("#rightClick");
+	if (menu.css("display") == "block") { menu.css("display", "none"); return false; }
 
 	let xpos = window.event.x + document.body.scrollLeft - 2;
 	let ypos = window.event.y + document.body.scrollTop - 2;
 	//console.log([xpos, ypos]);
-	menue.css("top", "calc(var(--ft-sz)*-2.5/4 + " + ypos.toString() + "px)");
-	menue.css("left", "calc(var(--ft-sz)*-0.5/4 + " + xpos.toString() + "px)");
-	menue.eq(0).attr("name", id);
+	menu.css("top", "calc(var(--ft-sz)*-2.5/4 + " + ypos.toString() + "px)");
+	menu.css("left", "calc(var(--ft-sz)*-0.5/4 + " + xpos.toString() + "px)");
+	menu.eq(0).attr("name", id);
 
 	//console.log($("#" + id + ".aPodcast").find("#green").css("display"));
-	//console.log(menue[0].innerText);
+	//console.log(menu[0].innerText);
 	//console.log("what");
 
 	if ($("#" + id + ".aPodcast").find("#green").css("display") == "none") {
@@ -199,7 +199,7 @@ function rightclickmenue(id, force=false) {
 		$("#manip")[0].innerText = "Remove from My Queue";
 		$("#manip").css("display", "block");
 	}
-	menue.css("display", "block");
+	menu.css("display", "block");
 	return false;
 }
 
@@ -266,9 +266,9 @@ function manipulateQueue(id, append, text="") {
 }
 
 document.getElementById("manip").addEventListener("click", e => {
-	let menue = $("#rightClick");
-	menue.css("display", "none");
-	let id = menue.eq(0).attr("name");
+	let menu = $("#rightClick");
+	menu.css("display", "none");
+	let id = menu.eq(0).attr("name");
 	//console.log($("#" + id + ".aPodcast"));
 
 	let ep = $("#" + id + ".aPodcast");
@@ -303,9 +303,9 @@ document.getElementById("manip").addEventListener("click", e => {
 
 //document.getElementById("select").addEventListener("click", e => {
 function selectCast(id) {
-	let menue = $("#rightClick");
-	menue.css("display", "none");
-	//let id = menue.eq(0).attr("name");
+	let menu = $("#rightClick");
+	menu.css("display", "none");
+	//let id = menu.eq(0).attr("name");
 	//console.log($("#" + id + ".aPodcast"));
 
 	let ep = $("#" + id + ".aPodcast");
@@ -321,15 +321,15 @@ function selectCast(id) {
 }
 
 
-function addMenue() {
+function addmenu() {
 	let show = $("#theShow-info");
 	let button = $("#tS-add");
 	let text = $("#text");
-	let menue = $("#tS-add-hidden");
-	menue.css("display", "block");
+	let menu = $("#tS-add-hidden");
+	menu.css("display", "block");
 	setTimeout(function () {
 		$(window).click(function () { 
-			menue.css("display", "none");
+			menu.css("display", "none");
 			$(window).off("click");
 		});
 	}, 10);
@@ -366,18 +366,18 @@ function addMenue() {
 
 	//console.log(show.offset().left + show[0].offsetWidth);
 	//console.log((text.offset().left + text[0].offsetWidth))
-	//console.log(menue[0].offsetWidth);
-	if (show.offset().left + show[0].offsetWidth - (text.offset().left + text[0].offsetWidth) < menue[0].offsetWidth) {
-		menue.css("top", button.offset().top - text.offset().top + button[0].offsetHeight*0.6);
-		menue.css("left", button.offset().left - menue[0].offsetWidth - text.offset().left + button[0].offsetWidth*0.6/2);
-		menue.css("border-top-right-radius", 0);
-		menue.css("border-bottom-left-radius", "calc(var(--ft-sz)*1)");		
+	//console.log(menu[0].offsetWidth);
+	if (show.offset().left + show[0].offsetWidth - (text.offset().left + text[0].offsetWidth) < menu[0].offsetWidth) {
+		menu.css("top", button.offset().top - text.offset().top + button[0].offsetHeight*0.6);
+		menu.css("left", button.offset().left - menu[0].offsetWidth - text.offset().left + button[0].offsetWidth*0.6/2);
+		menu.css("border-top-right-radius", 0);
+		menu.css("border-bottom-left-radius", "calc(var(--ft-sz)*1)");		
 	}
 	else {
-		menue.css("top", button.offset().top - menue[0].offsetHeight - text.offset().top + button[0].offsetHeight*0.6/2);
-		menue.css("left", button.offset().left - text.offset().left + button[0].offsetWidth*0.6);
-		menue.css("border-top-right-radius", "calc(var(--ft-sz)*1)");
-		menue.css("border-bottom-left-radius", 0);	
+		menu.css("top", button.offset().top - menu[0].offsetHeight - text.offset().top + button[0].offsetHeight*0.6/2);
+		menu.css("left", button.offset().left - text.offset().left + button[0].offsetWidth*0.6);
+		menu.css("border-top-right-radius", "calc(var(--ft-sz)*1)");
+		menu.css("border-bottom-left-radius", 0);	
 	}
 }
 
