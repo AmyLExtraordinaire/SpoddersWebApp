@@ -25,7 +25,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                 Podcast<br>
                 <div id="tS-bold">P-Title</div>
                 By (channel)<br>
-                (Other Info) &#9679 (#) Songs, (Total Play Length)
+                (#) Songs &#9679 (Total Play Length)
                 <div id="tS-add" onclick="addmenu()"> &#9679 &#9679 &#9679 </div>
                 <div id="tS-add-hidden">
                     <div class="hidden-block" onclick="selectAll()" id="SA"><div class="yellow">&#9679</div> Select all episodes</div>
@@ -34,7 +34,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                     <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove entire podcast from queue</div>
                     <!--div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div-->
                 </div>
-                <br>Priority: <u>unknown</u>, Sorted by <u>nothing</u>
+                <br>Priority: <u>unknown</u><br>Sorted by <u>nothing</u>
             </div>
         </div>`;
 
