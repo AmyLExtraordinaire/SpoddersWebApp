@@ -52,27 +52,24 @@
                 -->
                 <!-- Individual show block -->
                 <div id="showID" class="container-fluid well show-block" onclick="getEpisodes(this.id, showName)">
-                    <img id="podCover" src="" onerror=this.src="images/show.jpg">
+                    <img id="podCover">
                     <span class="spotShow">Spotify show</span><br>
-                    <!-- Sorting dropdown menu -->
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">New &#8594; Old
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Newest to oldest</a></li>
-                            <li><a href="#">Oldest to newest</a></li>
+                            <li class="newToOld"><a href="#">New &#8594; Old</a></li>
+                            <li class="oldToNew"><a href="#">Old &#8594; New</a></li>
                         </ul>
                     </div>
-                    <!-- Priority dropdown menu -->
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Set
-                            Priority
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Priority 1
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
+                            <li class="P1"><a href="#">Priority 1</a></li>
+                            <li class="P1"><a href="#">Priority 2</a></li>
+                            <li class="P1"><a href="#">Priority 3</a></li>
+                            <li class="P1"><a href="#">Priority 4</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,6 +204,7 @@
     <script src="scripts/getEpisodes.js"></script>
     <script src="scripts/pushToSpotify.js"></script>
     <script src="scripts/ordering.js"></script>
+    <script src="scripts/sortBy.js"></script>
 </body>
 
 </html>
