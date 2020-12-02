@@ -23,7 +23,7 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
     </div>`;
 
 
-var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenue('episodeID');"> 
+var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenu('episodeID', true);"> 
                             <div class='draggableTileContent'>
                                 <div class="dragCover" id="showID">
                                     <img src="insertPicHere" onerror=this.src="images/show.jpg">
@@ -36,16 +36,6 @@ var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="even
                                 </div>
                             </div>
                         </div>`;
-
-// Block for episode in draggable queue
-/*var dragBlock = '<div class="draggableTile">' +
-          '<div class="draggableTileContent">'+
-            '<div class="scrubber">' +
-              '<img src="images/scrubber.png">' +
-            '</div>' +
-            '1 Template text stuff' +
-          '</div>' +    
-        '</div>';*/
 
 // Grab user shows from spotify, display them in the DOM
 //  - Build left column
