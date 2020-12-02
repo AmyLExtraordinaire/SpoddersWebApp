@@ -18,7 +18,7 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 	// removes the tile gradding js temporarily while changes are made
 	$("#draggable_js").remove();
 
-	// gets the yellow and green dots for this epidode
+	// gets the yellow and green dots for this episode
 	let greenDot = episode.find("#green");
 	let yellowDot = episode.find("#yellow");
 

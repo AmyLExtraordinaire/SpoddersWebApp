@@ -3,21 +3,21 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
   <img id="podCover">
         <span class="spotShow">Spotify show</span><br>
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">New &#8594; Old
+            <button class="btn btn-primary dropdown-toggle NTOSort" type="button" data-toggle="dropdown">New &#8594; Old
             <span class="caret"></span></button>
             <ul class="dropdown-menu"> 
-                <li class="newToOld"><a>New &#8594; Old</a></li>
-                <li class="oldToNew"><a>Old &#8594; New</a></li>
+                <li class="newToOld" onclick="changeQueueSettings(showID,showName,5)"><a>New &#8594; Old</a></li>
+                <li class="oldToNew" onclick="changeQueueSettings(showID,showName,6)"><a>Old &#8594; New</a></li>
             </ul>
         </div>                                          
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Priority 1
+          <button class="btn btn-primary dropdown-toggle Pr1Sort" type="button" data-toggle="dropdown">Priority 1
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li class="P1"><a>Priority 1</a></li>
-            <li class="P2"><a>Priority 2</a></li>
-            <li class="P3"><a>Priority 3</a></li>
-            <li class="P4"><a>Priority 4</a></li>
+            <li class="P1" onclick="changeQueueSettings(showID,showName,1)"><a>Priority 1</a></li>
+            <li class="P2" onclick="changeQueueSettings(showID,showName,2)"><a>Priority 2</a></li>
+            <li class="P3" onclick="changeQueueSettings(showID,showName,3)"><a>Priority 3</a></li>
+            <li class="P4" onclick="changeQueueSettings(showID,showName,4)"><a>Priority 4</a></li>
           </ul>
         </div>
     </div>`;
@@ -84,6 +84,48 @@ function getUserPodcasts(access_token) {
             element.show.images[2].url +
             '" id="podCover" onerror=this.src="images/show.jpg">'
         );
+        currentPod = currentPod.replace(
+          '<li class="newToOld" onclick="changeQueueSettings(showID,showName,5)"><a>New &#8594; Old</a></li>',
+          '<li class="newToOld" onclick="changeQueueSettings('+
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '5)"><a>New &#8594; Old</a></li>'
+        );
+        currentPod = currentPod.replace(
+          '<li class="oldToNew" onclick="changeQueueSettings(showID,showName,6)"><a>Old &#8594; New</a></li>',
+          '<li class="oldToNew" onclick="changeQueueSettings(' +
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '6)"><a>Old &#8594; New</a></li>'
+        );
+        currentPod = currentPod.replace(
+          '<li class="P1" onclick="changeQueueSettings(showID,showName,1)"><a>Old &#8594; New</a></li>',
+          '<li class="P1" onclick="changeQueueSettings(' +
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '1)"><a>Old &#8594; New</a></li>'
+        );
+        currentPod = currentPod.replace(
+          '<li class="P2" onclick="changeQueueSettings(showID,showName,2)"><a>Old &#8594; New</a></li>',
+          '<li class="P2" onclick="changeQueueSettings(' +
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '2)"><a>Old &#8594; New</a></li>'
+        );
+        currentPod = currentPod.replace(
+          '<li class="P3" onclick="changeQueueSettings(showID,showName,3)"><a>Old &#8594; New</a></li>',
+          '<li class="P3" onclick="changeQueueSettings(' +
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '3)"><a>Old &#8594; New</a></li>'
+        );
+        currentPod = currentPod.replace(
+          '<li class="P4" onclick="changeQueueSettings(showID,showName,4)"><a>Old &#8594; New</a></li>',
+          '<li class="P4" onclick="changeQueueSettings(' +
+          String(element.show.id) + ',' +
+          String(element.show.name) + ',' +
+          '4)"><a>Old &#8594; New</a></li>'
+        );
         // Append block constucted above to DOM
         $("#podcastList").append(currentPod);
         podNum++;
@@ -126,10 +168,11 @@ function getUserPodcasts(access_token) {
               first.trigger("onclick");
               //firstTime = false;
             }
-
           }
         });
       });
+      // Resort queue after grabbing all the podcasts
+      resortQueue();
     },
   });
 }
