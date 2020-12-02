@@ -72,7 +72,7 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy) {
 
 	    // Build upper block and update it onto the DOM
 		let coverBlock = theShowBlock.replace("show.gif", episodes[0].images[1].url) 
-			.replace("P-Title", showName)		.replace("(#) Songs", numberOfEpisodes + " Epidodes")
+			.replace("P-Title", showName)		.replace("(#) Songs", numberOfEpisodes + " Episodes")
 			.replace("(channel)", podcastBy)	.replace("showID", showID);
 		$("#theCover").html(coverBlock);
 

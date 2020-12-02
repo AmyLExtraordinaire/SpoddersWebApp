@@ -3,7 +3,7 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
   <img id="podCover">
         <span class="spotShow">Spotify show</span><br>
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle NTOSort" type="button" data-toggle="dropdown">New &#8594; Old
+            <button class="btn btn-primary dropdown-toggle Sort NTOSort" type="button" data-toggle="dropdown">New &#8594; Old
             <span class="caret"></span></button>
             <ul class="dropdown-menu"> 
                 <li class="newToOld" onclick="changeQueueSettings(showID,showName,5)"><a>New &#8594; Old</a></li>
@@ -11,7 +11,7 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
             </ul>
         </div>                                          
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle Pr1Sort" type="button" data-toggle="dropdown">Priority 1
+          <button class="btn btn-primary dropdown-toggle P Pr1Sort" type="button" data-toggle="dropdown">Priority 1
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li class="P1" onclick="changeQueueSettings(showID,showName,1)"><a>Priority 1</a></li>
