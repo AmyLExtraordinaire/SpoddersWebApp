@@ -33,12 +33,46 @@ function changeQueueSettings(showID,showName,option){
         let menu = show.find(".P");
         menu.attr("class","btn btn-primary dropdown-toggle P Pr"+ option +"Sort");
         menu.html("Priority " + option);
+        PrioLevels[showID] = option;
+        resortQueue();
     }
     // Finally, resort the queue
-    resortQueue();
+    
 }
 
 // Reorder Queue based on sort by and priorities
 function resortQueue(){
+	var newQueueOrder = [];
+
+		$("#draggableContainer").children().each(function(e) {
+			let currentEp = this.id
+			let replaceTile = this;
+			//console.log(e)
+			if (this.id != "draggable_js") {
+				let dragTileContent = this.children;
+				//onsole.log(dragTileContent)
+				let showIdentify = dragTileContent[0].children
+				
+				//console.log(showIdentify[0])
+				if (showIdentify[0]) {
+					//console.log(PrioLevels[showIdentify[0].id]);
+					newQueueOrder.push({"epid" : currentEp, "replacement": replaceTile, "prioLevel" : PrioLevels[showIdentify[0].id]})
+					manipulateQueue(currentEp, false, "");
+					//setTimeout(function() {	manipulateQueue(currentEp, true, replaceTile, true) }, 1250);
+				}
+			}
+		})
+
+	setTimeout(function() {
+		var temp = newQueueOrder.sort((a, b) => a.prioLevel - b.prioLevel)
+		
+		$("#draggable_js").remove();
+		for (var i = 0; i < temp.length; i++) {
+			$("#draggableContainer").append(temp[i].replacement)
+		//manipulateQueue(temp[i].epid, true, temp[i].replacement)
+		}
+		
+}, 2000)
+	setTimeout(function() { $("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>') } , 4000)
 
 }

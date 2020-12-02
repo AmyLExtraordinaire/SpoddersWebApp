@@ -96,7 +96,7 @@ function looper(condition, append, other="") {
 			let pic = $("#" + podcastName).find("img").eq(0).attr("src");
 
 			// creates a new draggableTitle block to add to the queue
-			newEp = episodeTile.replace("episodeID", episodeID)  .replace("TempText", episodeTitle)  .replace("insertPicHere", pic);
+			newEp = episodeTile.replace("episodeID", episodeID)  .replace("TempText", episodeTitle)  .replace("insertPicHere", pic) .replace("showID", podcastName);
 		}
 		// if the condition is met and append is false, remove it from the queue
 		else if (eval(condition) && !append) {

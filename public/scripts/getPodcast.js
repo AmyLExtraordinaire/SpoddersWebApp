@@ -39,6 +39,9 @@ var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="even
 
 // Grab user shows from spotify, display them in the DOM
 //  - Build left column
+
+var PrioLevels = {};
+
 function getUserPodcasts(access_token) {
   // Ajax call for user shows with access token
   $.ajax({
@@ -61,6 +64,7 @@ function getUserPodcasts(access_token) {
       let podNum = 0;
       sortedPods.forEach(function (element) {
         //console.log(element);
+        PrioLevels[(element.show.id)] = 1;
         var currentPod = showBlock.replace(
           '<span class="spotShow">Spotify show</span>',
           "<span class='spotShow'>" + element.show.name + "</span>"

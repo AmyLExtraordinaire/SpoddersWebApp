@@ -86,7 +86,8 @@ document.getElementById("manip").addEventListener("click", e => {
 		// create a new draggableTiile episode block
 		let newEp = episodeTile.replace("episodeID", episode[0].id)
 			.replace("insertPicHere", $("#" + podcastID).find("img").eq(0).attr("src"))
-			.replace("TempText", episodeTitle);
+			.replace("TempText", episodeTitle)
+			.replace("showID", podcastID);
 
 		// append block (episode) to queue
 		// see function in "queueManipulation.js" for details

@@ -66,5 +66,5 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 	}
 
 	// reincludes the draggable js to update the draggble tile options
-	$("#draggableContainer").append('<div episodeID="draggable_js"><script src="scripts/draggable.js"></script></div>');
+	$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>');
 }

@@ -77,7 +77,7 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 
 	      	tempSortArray = episodes.sort((a, b) => a.release_date - b.release_date);
 	      } else if (sortBy == "OTNSort") {
-	      	tempSortArray = episodes.reverse();
+	      	episodes = episodes.reverse();
 	      }
 	    // Removes the template epidode that is in index.html
 	    document.getElementById("thePodcast").innerHTML = "";
