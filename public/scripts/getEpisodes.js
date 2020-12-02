@@ -2,7 +2,7 @@
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 // Block for episodes list in the center column
-var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" oncontextmenu="event.preventDefault();rightclickmenu('UNIQUEID');">\n
+var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" onclick="selectCast('UNIQUEID')" oncontextmenu="event.preventDefault();rightclickmenu('UNIQUEID');">\n
             \t<div class="tS-title" id="T-UNIQUEID" >\n
                 \t\t<div id="title">\n
                     \t\t\t<div id="green">&#9679</div><div id="yellow">&#9679</div>\n
@@ -28,11 +28,11 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                 (Other Info) &#9679 (#) Songs, (Total Play Length)
                 <div id="tS-add" onclick="addmenu()"> &#9679 &#9679 &#9679 </div>
                 <div id="tS-add-hidden">
-                    <div class="hidden-block" onclick="selectAll()" id="SA"><div class="yellow">&#9679</div> Select all podcast</div>
-                    <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected to queue</div>
-                    <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add all to queue</div>
-                    <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove all from queue</div>
-                    <div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div>
+                    <div class="hidden-block" onclick="selectAll()" id="SA"><div class="yellow">&#9679</div> Select all episodes</div>
+                    <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected episodes to queue</div>
+                    <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add entire podcast to queue</div>
+                    <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove entire podcast from queue</div>
+                    <!--div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div-->
                 </div>
                 <br>Priority: <u>unknown</u>, Sorted by <u>nothing</u>
             </div>
@@ -135,20 +135,9 @@ function getEpisodes(showID, showName, numEps, pub) {
 		let eps = $("#draggableContainer").find(".draggableTile");
 		let picKey = episodes[0].images[2].url;
 
-		if (showID == "5Sffly5o4mPetmnTR9zsWh") {
-			console.log(showName);
-			console.log(picKey);
-		}
-
 		for (var i = 0; i < eps.length; i++) {
 			//let currentPic = eps.eq(i).find(".dragCover img").attr("src");
 			let currentShow = eps.eq(i).find(".dragCover").attr("id");
-			if (showID == "5Sffly5o4mPetmnTR9zsWh") {
-				//console.log(episodes[0].images[2].url)
-				//console.log(eps.eq(i).find(".dragCover img").attr("src"));
-				//console.log([showName.substr(0, 8), picKey.split("image/")[1].substr(0, 12), currentPic.split("image/")[1].substr(0, 12)]);
-				console.log([showName.substr(0, 8), showID, currentShow]);
-			}
 			//if (currentPic != picKey) {
 				if (currentShow != showID) {
 				continue;
@@ -183,11 +172,11 @@ function rightclickmenu(id, force=false) {
 	//console.log("what");
 
 	if ($("#" + id + ".aPodcast").find("#green").css("display") == "none") {
-		$("#manip")[0].innerText = "Add to My Queue";
+		$("#manip")[0].innerText = "Add entire podcast to My Queue";
 		//$("#select").css("display", "block");
 	}
 	else {
-		$("#manip")[0].innerText = "Remove from My Queue";
+		$("#manip")[0].innerText = "Remove entire podcast from My Queue";
 		//$("#select").css("display", "none");
 	}
 
@@ -201,7 +190,7 @@ function rightclickmenu(id, force=false) {
 	}
 
 	if (force) {
-		$("#manip")[0].innerText = "Remove from My Queue";
+		$("#manip")[0].innerText = "Remove entire podcast from My Queue";
 		$("#manip").css("display", "block");
 	}
 	menu.css("display", "block");
@@ -314,14 +303,18 @@ function selectCast(id) {
 	//console.log($("#" + id + ".aPodcast"));
 
 	let ep = $("#" + id + ".aPodcast");
-	let signal = ep.find("#yellow");
+
+	let signal = ep.find("#green");
+	if (signal.css("display") != "none") { return; }
+
+	let signal2 = ep.find("#yellow");
 	let title = ep.find("#title")[0].innerText;
 
-	if (signal.css("display") == "none") {
-		signal.css("display", "inline-block");
+	if (signal2.css("display") == "none") {
+		signal2.css("display", "inline-block");
 	}
 	else {
-		signal.css("display", "none");
+		signal2.css("display", "none");
 	}
 }
 
@@ -354,12 +347,12 @@ function addmenu() {
 	if (grn + yel == eps.length) { 
 		$("#AATQ").css("display", "none");  
 		$("#SA").css("display", "block");
-		$("#SA")[0].innerText = "Deselect all podcast";
+		$("#SA")[0].innerText = "Deselect all episodes";
 	}
 	else {
 		$("#AATQ").css("display", "block"); 
 		$("#SA").css("display", "block"); 
-		$("#SA")[0].innerText = "Select all podcast";
+		$("#SA")[0].innerText = "Select all episodes";
 	}
 	if(grn == eps.length) { $("#SA").css("display", "none");}
 
@@ -372,11 +365,13 @@ function addmenu() {
 	//console.log(show.offset().left + show[0].offsetWidth);
 	//console.log((text.offset().left + text[0].offsetWidth))
 	//console.log(menu[0].offsetWidth);
-	if (show.offset().left + show[0].offsetWidth - (text.offset().left + text[0].offsetWidth) < menu[0].offsetWidth) {
-		menu.css("top", button.offset().top - text.offset().top + button[0].offsetHeight*0.6);
-		menu.css("left", button.offset().left - menu[0].offsetWidth - text.offset().left + button[0].offsetWidth*0.6/2);
-		menu.css("border-top-right-radius", 0);
-		menu.css("border-bottom-left-radius", "calc(var(--ft-sz)*1)");		
+	//if (show.offset().left + show[0].offsetWidth - (text.offset().left + text[0].offsetWidth) < menu[0].offsetWidth) {
+	if (true) {
+		menu.css("top", button.offset().top - menu[0].offsetHeight - text.offset().top + button[0].offsetHeight*0.75);
+		//menu.css("left", button.offset().left - menu[0].offsetWidth - text.offset().left - button[0].offsetWidth*0.6/2*0);
+		menu.css("left", 0);//text.offset().left);
+		//menu.css("border-top-right-radius", 0);
+		//menu.css("border-bottom-left-radius", "calc(var(--ft-sz)*1)");		
 	}
 	else {
 		menu.css("top", button.offset().top - menu[0].offsetHeight - text.offset().top + button[0].offsetHeight*0.6/2);
@@ -397,7 +392,7 @@ function removeAllFromQueue() {
 		if (signal.css("display") != "none") {
 			//console.log(eps.eq(i));
 			j++;
-			if (j <= 2) {
+			if (j <= -1) {
 				setTimeout(function() {
 					manipulateQueue(eps.eq(i)[0].id, false);
 				}, 1020*j)
@@ -405,7 +400,7 @@ function removeAllFromQueue() {
 			else {
 				setTimeout(function() {
 					manipulateQueue(eps.eq(i)[0].id, false);
-				}, 1020*3)
+				}, 1020*0)
 			}
 			//break;
 		}
@@ -433,7 +428,7 @@ function addAllToQueue() {
 				.replace("TempText", title);
 			//console.log(eps.eq(i));
 			j++;
-			if (j <= 2) {
+			if (j <= -1) {
 				setTimeout(function() {
 					manipulateQueue(id, true, newEp);
 				}, 1020*j)
@@ -441,7 +436,7 @@ function addAllToQueue() {
 			else {
 				setTimeout(function() {
 					manipulateQueue(id, true, newEp);
-				}, 1020*3)
+				}, 1020*0)
 			}
 			//break;
 		}
@@ -466,7 +461,7 @@ function addSelectedToQueue() {
 				.replace("TempText", title);
 			//console.log(eps.eq(i));
 			j++;
-			if (j <= 2) {
+			if (j <= -1) {
 				setTimeout(function() {
 					manipulateQueue(id, true, newEp);
 				}, 1020*j)
@@ -474,7 +469,7 @@ function addSelectedToQueue() {
 			else {
 				setTimeout(function() {
 					manipulateQueue(id, true, newEp);
-				}, 1020*3)
+				}, 1020*0)
 			}
 			//break;
 		}
@@ -488,10 +483,10 @@ function selectAll() {
 		let signal = eps.eq(i).find("#green");
 		let signal2 = eps.eq(i).find("#yellow");
 		//console.log(signal);
-		if (signal.css("display") == "none" && signal2.css("display") == "none" && $("#SA")[0].innerText == "Select all podcast") {
+		if (signal.css("display") == "none" && signal2.css("display") == "none" && $("#SA")[0].innerText == "Select all episodes") {
 			signal2.css("display", "inline-block");
 		}
-		if (signal.css("display") == "none" && signal2.css("display") != "none" && $("#SA")[0].innerText == "Deselect all podcast") {
+		if (signal.css("display") == "none" && signal2.css("display") != "none" && $("#SA")[0].innerText == "Deselect all episodes") {
 			signal2.css("display", "none");
 		}
 	}

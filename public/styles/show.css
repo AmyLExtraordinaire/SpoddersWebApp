@@ -110,7 +110,6 @@
 	width: 100%;
 	height: calc(var(--ft-sz)*(2 + var(--detail)*1.25));
 	min-height: calc(var(--ft-sz)*4.5);
-	background-color: var(--bkgrnd-grey);
 	position: relative;
 	border-radius: calc(var(--ft-sz)*1);
 	margin-bottom: calc(var(--ft-sz)*0.5);
@@ -125,6 +124,7 @@
 	left: var(--col1);
 	background-color: var(--debug);
 	height: auto;
+	max-height: calc(var(--ft-sz)*(2 + var(--detail)*1.25) - var(--ft-sz)*1);
 	right: 0;
 	border-radius: calc(var(--ft-sz)*1);
 	/*min-width: calc(100% - 4*(var(--ft-sz)*(9.75/16)));*/
@@ -251,8 +251,6 @@ hr.theCast-line {
 	margin-top: calc(var(--ft-sz)*0.25);
 	margin-bottom: calc(var(--ft-sz)*0.25);
 	margin-left: calc(var(--ft-sz)*3/2);
-
-	background-color: var(--debug);
 }
 
 #green {

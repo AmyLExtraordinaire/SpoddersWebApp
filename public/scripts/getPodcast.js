@@ -70,7 +70,7 @@ function getUserPodcasts(access_token) {
       // Loop and add each show in the podcast list to the DOM
       let podNum = 0;
       sortedPods.forEach(function (element) {
-        console.log(element);
+        //console.log(element);
         var currentPod = showBlock.replace(
           '<span class="spotShow">Spotify show</span>',
           "<span class='spotShow'>" + element.show.name + "</span>"
