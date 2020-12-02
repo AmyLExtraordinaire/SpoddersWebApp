@@ -15,9 +15,9 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li class="P1"><a href="#">Priority 1</a></li>
-            <li class="P1"><a href="#">Priority 2</a></li>
-            <li class="P1"><a href="#">Priority 3</a></li>
-            <li class="P1"><a href="#">Priority 4</a></li>
+            <li class="P2"><a href="#">Priority 2</a></li>
+            <li class="P3"><a href="#">Priority 3</a></li>
+            <li class="P4"><a href="#">Priority 4</a></li>
           </ul>
         </div>
     </div>`;
