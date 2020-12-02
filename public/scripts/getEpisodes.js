@@ -105,10 +105,7 @@ function getEpisodes(showID, showName, numEps, pub) {
 	        //console.log(element);
 	        var currentEp = epBlock.replace(" Titlehere", " " + element.name);
 	        currentEp = currentEp.replace("DESCRIPTION", element.description);
-	        currentEp = currentEp.replace(
-	        	"RELEASED",
-	        	num2date(element.release_date)
-	        );
+	        currentEp = currentEp.replace("RELEASED", num2date(element.release_date));
 	        currentEp = currentEp.replace("DUR.", ms2time(element.duration_ms));
 	        currentEp = currentEp.replaceAll("UNIQUEID", element.id);
 	        currentEp = currentEp.replace("T-UNIQUEID", "T-" + element.id);
@@ -140,6 +137,11 @@ function getEpisodes(showID, showName, numEps, pub) {
 		//highlight eps in queue
 		let eps = $("#draggableContainer").find(".draggableTile");
 		let picKey = episodes[0].images[2].url;
+
+		if (showID == "5Sffly5o4mPetmnTR9zsWh") {
+			console.log(showName);
+		}
+
 		for (var i = 0; i < eps.length; i++) {
 			//console.log(episodes[0].images[2].url)
 			//console.log(eps.eq(i).find(".dragCover img").attr("src"));
@@ -147,7 +149,6 @@ function getEpisodes(showID, showName, numEps, pub) {
 				continue;
 			}
 			//if(eps[i][0]
-			console.log();
 			//$("#" + eps.eq(i)[0].id).css("background-color", "var(--bkgrnd-grey1p5)");
 			$("#" + eps.eq(i)[0].id).find("#green").css("display", "inline-block")
 			//break;
@@ -161,7 +162,7 @@ $(window).click(function () {
 	//$("#tS-add-hidden").css("display", "none"); 
 } )
 
-function rightclickmenue(id) {
+function rightclickmenue(id, force=false) {
 	let menue = $("#rightClick");
 	if (menue.css("display") == "block") { menue.css("display", "none"); return false; }
 
@@ -184,6 +185,7 @@ function rightclickmenue(id) {
 		$("#manip")[0].innerText = "Remove from My Queue";
 		//$("#select").css("display", "none");
 	}
+
 	if ($("#" + id + ".aPodcast").find("#yellow").css("display") == "none") {
 		//$("#select")[0].innerText = "Select podcast";
 		$("#manip").css("display", "block");
@@ -191,6 +193,11 @@ function rightclickmenue(id) {
 	else {
 		//$("#select")[0].innerText = "Deselect Podcast";
 		$("#manip").css("display", "none");
+	}
+
+	if (force) {
+		$("#manip")[0].innerText = "Remove from My Queue";
+		$("#manip").css("display", "block");
 	}
 	menue.css("display", "block");
 	return false;
@@ -201,7 +208,16 @@ let drag_js = '<script src="scripts/draggable.js"></script>';
 function manipulateQueue(id, append, text="") {
 	let signal = $("#" + id + ".aPodcast").find("#green");
 	let signal2 = $("#" + id + ".aPodcast").find("#yellow");
-	let title = $("#" + id + ".aPodcast").find("#title")[0].innerText;
+
+	let ep = $("#" + id + ".aPodcast");
+	let title;
+	if (ep.length == 0) {
+		ep = $("#" + id + ".draggableTile");
+		title = ep[0].innerText;
+	}
+	else {
+		title = ep.find("#title")[0].innerText;
+	}
 
 	$("#draggable_js").remove();
 
@@ -256,8 +272,16 @@ document.getElementById("manip").addEventListener("click", e => {
 	//console.log($("#" + id + ".aPodcast"));
 
 	let ep = $("#" + id + ".aPodcast");
+	let title;
+	if (ep.length == 0) {
+		ep = $("#" + id + ".draggableTile");
+		title = ep.innerHTML;
+	}
+	else {
+		title = ep.find("#title")[0].innerText;
+	}
+	//console.log(ep);
 	let signal = ep.find("#green");
-	let title = ep.find("#title")[0].innerText;
 
 	$("#draggable_js")[0].innerHTML = "";
 
@@ -320,7 +344,7 @@ function addMenue() {
 			yel++;
 		}
 	}
-	console.log([eps.length, grn, yel]);
+	//console.log([eps.length, grn, yel]);
 
 	if (grn + yel == eps.length) { 
 		$("#AATQ").css("display", "none");  
