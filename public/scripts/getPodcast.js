@@ -99,32 +99,32 @@ function getUserPodcasts(access_token) {
           '6)"><a>Old &#8594; New</a></li>'
         );
         currentPod = currentPod.replace(
-          '<li class="P1" onclick="changeQueueSettings(showID,showName,1)"><a>Old &#8594; New</a></li>',
+          '<li class="P1" onclick="changeQueueSettings(showID,showName,1)"><a>Priority 1</a></li>',
           '<li class="P1" onclick="changeQueueSettings(' +
           String(element.show.id) + ',' +
           String(element.show.name) + ',' +
-          '1)"><a>Old &#8594; New</a></li>'
+          '1)"><a>Priority 1</a></li>'
         );
         currentPod = currentPod.replace(
-          '<li class="P2" onclick="changeQueueSettings(showID,showName,2)"><a>Old &#8594; New</a></li>',
+          '<li class="P2" onclick="changeQueueSettings(showID,showName,2)"><a>Priority 2</a></li>',
           '<li class="P2" onclick="changeQueueSettings(' +
           String(element.show.id) + ',' +
           String(element.show.name) + ',' +
-          '2)"><a>Old &#8594; New</a></li>'
+          '2)"><a>Priority 2</a></li>'
         );
         currentPod = currentPod.replace(
-          '<li class="P3" onclick="changeQueueSettings(showID,showName,3)"><a>Old &#8594; New</a></li>',
+          '<li class="P3" onclick="changeQueueSettings(showID,showName,3)"><a>Priority 3</a></li>',
           '<li class="P3" onclick="changeQueueSettings(' +
           String(element.show.id) + ',' +
           String(element.show.name) + ',' +
-          '3)"><a>Old &#8594; New</a></li>'
+          '3)"><a>Priority 3</a></li>'
         );
         currentPod = currentPod.replace(
-          '<li class="P4" onclick="changeQueueSettings(showID,showName,4)"><a>Old &#8594; New</a></li>',
+          '<li class="P4" onclick="changeQueueSettings(showID,showName,4)"><a>Priority 4</a></li>',
           '<li class="P4" onclick="changeQueueSettings(' +
           String(element.show.id) + ',' +
           String(element.show.name) + ',' +
-          '4)"><a>Old &#8594; New</a></li>'
+          '4)"><a>Priority 4</a></li>'
         );
         // Append block constucted above to DOM
         $("#podcastList").append(currentPod);
