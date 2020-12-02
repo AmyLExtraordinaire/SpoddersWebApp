@@ -63,3 +63,8 @@ span.spotShow {
     height: 64px;
     width: auto;
 }
+
+#podcastList {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
