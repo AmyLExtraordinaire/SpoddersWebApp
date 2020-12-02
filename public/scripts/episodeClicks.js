@@ -14,7 +14,7 @@ function rightclickmenu(id, force=false) {
 	// gets the x and y coordinates of the mouse in the window
 	let xpos = window.event.x + document.body.scrollLeft - 2;
 	let ypos = window.event.y + document.body.scrollTop - 2;
-	console.log(menu.eq(0).attr("name"))
+
 	// places the menu under the mouse
 	menu.css("top", "calc(var(--ft-sz)*-2.5/4 + " + ypos.toString() + "px)")
 		.css("left", "calc(var(--ft-sz)*-0.5/4 + " + xpos.toString() + "px)")
@@ -92,7 +92,7 @@ document.getElementById("manip").addEventListener("click", e => {
 
 		// append block (episode) to queue
 		// see function in "queueManipulation.js" for details
-		console.log(newEp)
+
 		manipulateQueue(episodeID, true, newEp);
 	}
 
