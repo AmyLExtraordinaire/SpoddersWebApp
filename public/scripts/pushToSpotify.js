@@ -16,6 +16,7 @@ function pushToQueue() {
         }
    })
   })*/
+  $(".exportText").html("Exporting to Queue...");
   let usedBefore = false;
   let playlistID;
   $.ajax({
@@ -25,7 +26,7 @@ function pushToQueue() {
     },
     success : function(response) {
       response.items.forEach(function(e) {
-        if (e.name == "SKIVINGSKON Playlist") {
+        if (e.name == "SKINGERSKON Playlist") {
           usedBefore = true;
           playlistID = e.id;
         }
@@ -100,12 +101,10 @@ function pushToQueue() {
           }
         })
       }
-
-      
-
-
+      $(".exportText").html("Export Successful! :)");
+      setTimeout(() => {
+        $(".exportText").html("Export to Queue")
+      }, 1000);
     }
   })
-
-  
 }
