@@ -10,7 +10,8 @@ function changeQueueSettings(showID,showName,option){
         }else{
             menu.setAttribute("class","btn btn-primary dropdown-toggle Sort OTNSort");
         }
-    }else{
+    }
+    else{
         let menu = show.find(".P");
         menu.setAttribute("class","btn btn-primary dropdown-toggle P Pr"+ option +"Sort");
     }
