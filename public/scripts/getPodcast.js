@@ -25,7 +25,7 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
 
 var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenue('episodeID');"> 
                             <div class='draggableTileContent'>
-                                <div class="dragCover">
+                                <div class="dragCover" id="showID">
                                     <img src="insertPicHere" onerror=this.src="images/show.jpg">
                                 </div>
                                 <div class="dragText">
@@ -101,6 +101,8 @@ function getUserPodcasts(access_token) {
 
       document.getElementById("draggableContainer").innerHTML = ""
 
+      //let firstTime = true;
+
       sortedPods.forEach(function(element) {
         $.ajax({
           url: "https://api.spotify.com/v1/shows/" + element.show.id + "/episodes?limit=5",
@@ -115,6 +117,7 @@ function getUserPodcasts(access_token) {
               //tempTile = tempTile.replace("TempText", element.show.name + " -> " + el.name);
               tempTile = tempTile.replace("TempText", el.name);
               tempTile = tempTile.replace("insertPicHere", element.show.images[2].url);
+              tempTile = tempTile.replace("showID", element.show.id);
               $("#draggableContainer").append(tempTile);
             })
             $("#draggable_js").remove();
@@ -128,8 +131,11 @@ function getUserPodcasts(access_token) {
              * - modify the "get episodes" function to accept either js or DOM calls
              *   - accomplish this by putting the ajax calls into a different datastructure
              */
-            let first = $("#" + sortedPods[0].show.id);
-            first.trigger("onclick");
+            if (element == sortedPods[sortedPods.length - 1]) {
+              let first = $("#" + sortedPods[0].show.id);
+              first.trigger("onclick");
+              //firstTime = false;
+            }
 
           }
         });

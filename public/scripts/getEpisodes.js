@@ -128,10 +128,7 @@ function getEpisodes(showID, showName, numEps, pub) {
 
 		// Add upper block to DOM
 		//console.log(ms2time(timer).replace("hrs", " hrs"));
-		coverBlock = coverBlock.replace(
-	        "(Total Play Length)",
-	        ms2time(timer).replace("hrs", " hrs")
-		);
+		coverBlock = coverBlock.replace("(Total Play Length)", ms2time(timer).replace("hrs", " hrs"));
 		$("#theCover").html(coverBlock);
 
 		//highlight eps in queue
@@ -140,12 +137,20 @@ function getEpisodes(showID, showName, numEps, pub) {
 
 		if (showID == "5Sffly5o4mPetmnTR9zsWh") {
 			console.log(showName);
+			console.log(picKey);
 		}
 
 		for (var i = 0; i < eps.length; i++) {
-			//console.log(episodes[0].images[2].url)
-			//console.log(eps.eq(i).find(".dragCover img").attr("src"));
-			if (eps.eq(i).find(".dragCover img").attr("src") != picKey) {
+			//let currentPic = eps.eq(i).find(".dragCover img").attr("src");
+			let currentShow = eps.eq(i).find(".dragCover").attr("id");
+			if (showID == "5Sffly5o4mPetmnTR9zsWh") {
+				//console.log(episodes[0].images[2].url)
+				//console.log(eps.eq(i).find(".dragCover img").attr("src"));
+				//console.log([showName.substr(0, 8), picKey.split("image/")[1].substr(0, 12), currentPic.split("image/")[1].substr(0, 12)]);
+				console.log([showName.substr(0, 8), showID, currentShow]);
+			}
+			//if (currentPic != picKey) {
+				if (currentShow != showID) {
 				continue;
 			}
 			//if(eps[i][0]
