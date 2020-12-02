@@ -34,14 +34,14 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 
 		// adds a temporary div within the revently added block that will make the block first render bright and fade to a normal color
 		$("#" + episodeID + ".draggableTile").find(".draggableTileContent").append(
-			'<div id="deleteMe" style="position: absolute; width: 99%; height: 100%; top: 0; background-color: var(--text-white);opacity: 0.5;' + 
+			'<div id="deleteMe' + episodeID + '" style="position: absolute; width: 99%; height: 100%; top: 0; background-color: var(--text-white);opacity: 0.5;' + 
 			'animation: fade 2s 1; animation-delay: 0.25s"></div>');
 
 		// scrolls the queue to let the user see the new episode that was added to the queue
 		document.getElementById("draggableContainer").scrollTo({top: $("#" + episodeID + ".draggableTile").offset().top, behavior: 'smooth'});
 
 		// removes the animated subdiv because it has no purpose anymore
-		setTimeout(function() { $("#deleteMe").remove(); }, 1000);
+		setTimeout(function() { $("#deleteMe" + episodeID).remove(); }, 1000);
 	}
 	// otherwise the function was called to remove and element to the queue
 	else {
