@@ -80,7 +80,7 @@ function resortQueue(){
 		$("#draggable_js").remove()
 		$("#draggableContainer").append('<div id="draggable_js"><script src="scripts/draggable.js"></script></div>')
 		SkylabSortableListCore( $( '#draggableContainer' ) );
-		console.log("finished this shit")
+
 }, 2000)
 
 

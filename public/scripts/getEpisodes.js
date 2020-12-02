@@ -109,7 +109,7 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 	    $(".theCast-line").eq($(".theCast-line").length - 1).remove();
 
 		// now that the total duration is known, update that in the title block
-		console.log();
+
 		$("#theShow-info")[0].innerHTML = $("#theShow-info")[0].innerHTML.replace("(Total Play Length)", ms2time(timer));
 
 
