@@ -46,8 +46,8 @@ let resizeCoverPic = function() {
 		podcastPic.css("height", (parseFloat(podcastPic.css("height")) + oversize - 1).toString(10) + "px");
 		podcastPic.css("width", podcastPic.css("height"));
 
-		podcastPic.children()[0].css("width", podcastPic.css("height"));
-		console.log(podcastPic.children()[0].css("width"))
+		podcastPic.find("img").css("width", podcastPic.css("height"));
+		//console.log(podcastPic.children()[0].css("width"));
 	}
 
 	//growing
@@ -57,8 +57,8 @@ let resizeCoverPic = function() {
 		podcastPic.css("height", (parseFloat(podcastPic.css("height")) + oversize - 1).toString(10) + "px");
 		podcastPic.css("width", podcastPic.css("height"));
 
-		podcastPic.children()[0].css("width", podcastPic.css("height"));
-		console.log(podcastPic.children()[0].css("width"))
+		podcastPic.find("img").css("width", podcastPic.css("height"));
+		//console.log(podcastPic.children()[0].css("width"))
 	}
 	else {
 		podcastPic.find("img").css("height", "100%");
