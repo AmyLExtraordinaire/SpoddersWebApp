@@ -47,6 +47,12 @@ function authorize() {
   window.location = url;
 }
 
+// desc: logs out the user and reloads a blank page
+function logout() {
+  location.href = "#";
+  location.reload();
+}
+
 // Doc ready function
 $("document").ready(function () {
   if (error) {
@@ -66,7 +72,11 @@ $("document").ready(function () {
         }
       })
       getUserPodcasts(access_token);
+      document.getElementById("mainBodyAlt").style.display = "none";
       document.getElementById("loginButton").style.display = "none";
+    } else {
+      document.getElementById("mainBody").style.display = "none";
+      document.getElementById("logoutButton").style.display = "none";
     }
   }
 });
