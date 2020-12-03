@@ -133,8 +133,17 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 
 			// dispalys the green dot of that episode in the $(#"thePodcast") div
 			$("#" + draggableEpisodes.eq(i)[0].id).find("#green").css("display", "inline-block")
-
 		}
-    },
+
+		//resize the cover picture if nessisary
+		let podcastPic = $("#theShow-pic");
+		let podcastInfoText = $("#text");
+		let podcastInfo = $("#theShow-info");
+		console.log(parseInt(podcastInfo.css("width")), parseInt(podcastPic.css("height")), parseInt(podcastInfoText.css("width")),
+			parseInt(podcastInfo.css("width")) - parseInt(podcastPic.css("width")) - parseInt(podcastInfoText.css("width")))
+		if (parseInt(podcastInfo.css("width")) - parseInt(podcastPic.css("width")) - parseInt(podcastInfoText.css("width")) < 0) {
+			console.log("yup");
+		}
+    }
   });
 }

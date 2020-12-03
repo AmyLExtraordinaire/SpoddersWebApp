@@ -31,18 +31,16 @@
 	height: auto;
 	width: 100%;
 	--pct: calc(var(--ft-sz)*(9.75/16));
-	/*position: relative;
-	top: var(--pct);
-	bottom: var(--pct);
-	left: var(--pct);
-	right: var(--pct);*/
 	margin: var(--pct);
 	display: inline-block;
 	background-color: var(--debug);
 }
 
 #theShow-pic{
+	margin-right: 4%;
 	display: inline-block;
+	float: left;
+	clear: right;
 	height: calc(var(--ft-sz)*15);;
 	width: auto;
 	background-color: var(--debug);
@@ -58,17 +56,16 @@
 
 #text{
 	display: inline-block;
+	float: left;
+	clear: right;
 	background-color: var(--debug);
 	height: auto;
 	color: var(--text-white);
 	font-size: calc(var(--ft-sz) + 0px);
-	margin-left: 2%;
 	margin-right: calc(2% +  var(--ft-sz)*3.5);
-	margin-top: calc(var(--ft-sz)*1);
+	margin-top: 0;
 	position: relative;
-	left: 2%;
 	right: 0;
-	/*padding: 2%;*/
 }
 
 #tS-bold {
