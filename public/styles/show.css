@@ -339,6 +339,10 @@ hr.theCast-line {
 	font-size: calc(var(--ft-sz) + 1px);
 }
 
+#mainBodyAlt {
+	padding: 100px;
+}
+
 #rightClick {
 	position: fixed;
 	top: 0;
