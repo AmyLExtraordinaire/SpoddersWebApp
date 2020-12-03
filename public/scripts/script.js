@@ -18,11 +18,19 @@ var access_token = params.access_token,
 
 
 function toggleDisplay(jquery, tempHeight, resizeEpsRequest) {
+  let temp = jquery.css("display");
+  //console.log(jquery.hasClass("row"));
+  if (jquery.hasClass("row")) { temp = "block"}
+  //console.log(jquery)
+  //console.log(jquery.css("opacity"));
   if (jquery.css("opacity") != 0) {
+    jquery.css("display", temp);
     jquery.css("transitionDuration", "0s");
     jquery.css("opacity", 0);
     jquery.css("height", 0);
+    //console.log(jquery.css("height"));
     jquery.css("overflow-y", "hidden");
+    //console.log(jquery)
   }
   else {
     //console.log(tempHeight)

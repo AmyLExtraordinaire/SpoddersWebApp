@@ -48,7 +48,7 @@ function rightclickmenu(id, force=false) {
 		$("#manip").css("display", "none");
 	}
 
-	console.log(yellowDot.css("display") == "inline-block");
+	//console.log(yellowDot.css("display") == "inline-block");
 	if (yellowDot.css("display") == "inline-block") {
 		$("#select")[0].innerText = "Add all selected episodes to queue";
 		$("#manip").css("display", "block");
@@ -120,6 +120,7 @@ document.getElementById("manip").addEventListener("click", e => {
 document.getElementById("select").addEventListener("click", function() {
 	let episodeID = $("#rightClick").eq(0).attr("name");
 	let yellowDot = $("#" + episodeID + ".aPodcast").find("#yellow");
+	menu.css("display", "none");
 	addSelectedToQueue();
 });
 
