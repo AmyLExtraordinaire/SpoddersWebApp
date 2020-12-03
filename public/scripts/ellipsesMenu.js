@@ -5,7 +5,7 @@ function ellipsesmenu() {
 	let button = $("#tS-add");
 	let text = $("#text");
 	let menu = $("#tS-add-hidden");
-	menu.css("display", "block"); // makes the menu visible
+	menu.css("display", "inline-block"); // makes the menu visible
 
 	// temporarily adds an onclick function to the enitre page to close the menu when at the next click
 	// setTimeout needed so that the close menu event doesn't trigger off the same click as the open menu click

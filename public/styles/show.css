@@ -46,7 +46,9 @@
 	height: calc(var(--ft-sz)*15);;
 	width: auto;
 	background-color: var(--debug);
+	transition-duration: 0.25s;
 }
+
 #theShow-pic img {
 	position: center;
 	--sz: 100%;
@@ -57,7 +59,7 @@
 #text{
 	display: inline-block;
 	background-color: var(--debug);
-	height: 100%;
+	height: auto;
 	color: var(--text-white);
 	font-size: calc(var(--ft-sz) + 0px);
 	margin-left: 2%;
@@ -74,6 +76,7 @@
 	font-size: calc(var(--ft-sz)*1.5);
 	padding-top: 2%;
 	padding-bottom: 2%;
+	display: inline-block;
 }
 
 #theShow-cast-header {
@@ -297,15 +300,16 @@ hr.theCast-line {
 
 #tS-add-hidden {
 	position: absolute;
+	display: none;
+	width: auto;
+	white-space: nowrap;
+	z-index: 1;
+
 	background-color: var(--bkgrnd-grey1);
 	border-radius: calc(var(--ft-sz)*1); 
 	border-style: solid;
 	border-width: calc(var(--ft-sz)*0.1);
-	border-color: var(--text-grey); 
-	display: none;
-	width: auto;
-	white-space: nowrap;
-	z-index: 5;
+	border-color: var(--text-grey);
 }
 
 .hidden-block {

@@ -90,17 +90,17 @@
                         </div>
                         <div id="text">
                             Podcast<br>
-                            <div id="tS-bold">Login to View Podcast</div>
+                            <div id="tS-bold">P-Title</div><br>
                             By (channel)<br>
                             (#) Songs &#9679 (Total Play Length)
-                            <div id="tS-add" onclick="addMenu()"> &#9679 &#9679 &#9679 </div>
+                            <br>Priority: <!--<u>unknown</u><br>Sorted by <u>nothing</u>--><br>
+                            <div id="tS-add" onclick="ellipsesmenu()"> &#9679 &#9679 &#9679 </div>
                             <div id="tS-add-hidden">
-                                <div class="hidden-block" onclick="" id="SA"><div class="yellow">&#9679</div> Select all podcast</div>
-                                <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected to queue</div>
-                                <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add all to queue</div>
-                                <!--div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove all from queue</div-->
+                                <div class="hidden-block" onclick="selectAll()" id="SA"><div class="yellow">&#9679</div> Select all episodes</div>
+                                <div class="hidden-block" onclick="addSelectedToQueue()" id="ASTQ"><div class="yellow">&#9679</div> Add selected episodes to queue</div>
+                                <div class="hidden-block" onclick="addAllToQueue()" id="AATQ"><div class="green">&#9679</div> Add entire podcast to queue</div>
+                                <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove entire podcast from queue</div>
                             </div>
-                            <br>Priority: <u>unknown</u>, Sorted by <u>nothing</u>
                         </div>
                     </div>
                 </div>
