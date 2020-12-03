@@ -16,6 +16,7 @@ function pushToQueue() {
         }
    })
   })*/
+  $(".exportText").html("Exporting to Queue...");
   let usedBefore = false;
   let playlistID;
   $.ajax({
@@ -25,7 +26,7 @@ function pushToQueue() {
     },
     success : function(response) {
       response.items.forEach(function(e) {
-        if (e.name == "SKIVINGSKON Playlist") {
+        if (e.name == "SKINGERSKON Playlist") {
           usedBefore = true;
           playlistID = e.id;
         }
@@ -35,7 +36,7 @@ function pushToQueue() {
         exportArray.push(this.id);
       })
       if(!usedBefore) {
-        var body = '{"name" : "SKIVINGSKON Playlist"}'
+        var body = '{"name" : "SKINGERSKON Playlist"}'
         $.ajax({
           type: "POST",
           url: "https://api.spotify.com/v1/users/" + userID + "/playlists",
@@ -100,12 +101,12 @@ function pushToQueue() {
           }
         })
       }
-
-      
-
-
+      setTimeout(() => {
+        $(".exportText").html("Export Successful! :)");
+        setTimeout(() => {
+          $(".exportText").html("Export to Queue");
+        }, 3000);
+      }, 1000);
     }
   })
-
-  
 }
