@@ -3,3 +3,4 @@ Drag scrubbers works on mobile
 drag scrubber moves scroll bar
 when the dragtiles get too narrow, re adjust entire page
 add bounding div to podcast
+fix/remove animations for priority effects on queue

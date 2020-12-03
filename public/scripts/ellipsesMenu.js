@@ -92,7 +92,7 @@ function looper(condition, append, other="") {
 
 		// if the condition is met and append is true , add it to the queue
 		if (eval(condition) && append) {
-			let episodeTitle = podcastEpisodes.eq(i).find("#title")[0].innerText;
+			let episodeTitle = podcastEpisodes.eq(i).find(".title")[0].innerText;
 			let pic = $("#" + podcastName).find("img").eq(0).attr("src");
 
 			// creates a new draggableTitle block to add to the queue

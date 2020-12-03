@@ -86,7 +86,7 @@ document.getElementById("manip").addEventListener("click", e => {
 		episodeTitle = episode.innerHTML;
 	}
 	else { // if episode call was from podcast
-		episodeTitle = episode.find("#title")[0].innerText;
+		episodeTitle = episode.find(".title")[0].innerText;
 	}
 
 	// gets the green dot for this episode
