@@ -27,7 +27,7 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 		// debugging purposes only, normally disabled
 		if (verbose) { console.log("Added '" + episodeTitle + "' to the queue"); }
 
-		$("#draggableContainer").append(text); // add the block (episode) to the queue
+		$("#draggableContainer").append(text.replaceAll("●","")); // add the block (episode) to the queue
 
 		greenDot.css("display", "inline-block"); 	// force-displays the green dot
 		yellowDot.css("display", "none");			// force hides the yellow dot

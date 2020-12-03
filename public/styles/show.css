@@ -353,8 +353,13 @@ hr.theCast-line {
 	z-index: 50;
 }
 
-#rightClick:hover {
+.rightClickBlock:hover {
 	color: var(--text-white);
+}
+
+.rightClickBlock {
+	text-align: left;
+	padding: calc(var(--ft-sz)*0.25);
 }
 
 @keyframes fade {
