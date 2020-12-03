@@ -8,7 +8,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
             </div>
             <div id="text">
                 Podcast<br>
-                <div id="tS-bold">P-Title</div>
+                <div id="tS-bold">P-Title</div><br>
                 By (channel)<br>
                 (#) Songs &#9679 (Total Play Length)
                 <div id="tS-add" onclick="ellipsesmenu()"> &#9679 &#9679 &#9679 </div>
@@ -19,7 +19,7 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                     <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove entire podcast from queue</div>
                     <!--div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div-->
                 </div>
-                <br>Priority: <u>unknown</u><br>Sorted by <u>nothing</u>
+                <br>Priority: unknown<br>Sorted by: nothing
             </div>
         </div>`;
 
@@ -72,20 +72,25 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
     success: function (response) {
 	    // Build episode info block and remove template code
 	    let episodes = response.items;
-	    let tempSortArray;
-	      if (sortBy == "NTOSort") {
-
-	      	tempSortArray = episodes.sort((a, b) => a.release_date - b.release_date);
-	      } else if (sortBy == "OTNSort") {
+	    let sortOrder;
+	    let priority = parseInt($("#" + showID).find("button.P")[0].innerText.replace("Priority ", ""));
+	    if (sortBy == "OTNSort") {
 	      	episodes = episodes.reverse();
-	      }
+	      	sortOrder = "Old &#8594; New";
+	    }
+	    else {//if (sortBy == "NTOSort") {
+	      	tempSortArray = episodes.sort((a, b) => a.release_date - b.release_date);
+	      	sortOrder = "New &#8594; Old";
+	    }
 	    // Removes the template epidode that is in index.html
 	    document.getElementById("thePodcast").innerHTML = "";
 
 	    // Build upper block and update it onto the DOM
+	    console.log()
 		let coverBlock = theShowBlock.replace("show.gif", episodes[0].images[1].url) 
 			.replace("P-Title", showName)		.replace("(#) Songs", numberOfEpisodes + " Episodes")
-			.replace("(channel)", podcastBy)	.replace("showID", showID);
+			.replace("(channel)", podcastBy)	.replace("showID", showID)
+			.replace("unknown", priority)		.replace("nothing", sortOrder);
 		$("#theCover").html(coverBlock);
 
 		// Add individual episode blocks to the podcast episodes container $(#"thePodcast")

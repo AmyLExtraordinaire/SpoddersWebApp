@@ -42,6 +42,8 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 
 		// removes the animated subdiv because it has no purpose anymore
 		setTimeout(function() { $("#deleteMe" + episodeID).remove(); }, 1000);
+		$("#" + episodeID + ".draggableTile").attr("name", )
+		console.log($("#" + episodeID + ".draggableTile").attr("name"));
 	}
 	// otherwise the function was called to remove and element to the queue
 	else {
