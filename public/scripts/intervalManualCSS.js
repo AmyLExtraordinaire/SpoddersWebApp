@@ -28,9 +28,9 @@ let resizeCoverPic = function() {
 			podcastPic.find("img").css("width", (podcastInfoHeight).toString(10)+"px");
 		}
 		else if (stackEpisodeCover && (parseFloat(podcastPic.css("height")) + oversize - 0) > (podcastInfoHeight)) {
-			console.log("here");
-			podcastPic.css("width", "auto");
+			//console.log("here");
 			podcastPic.css("height", (podcastInfoHeight).toString(10)+"px");
+			podcastPic.css("width", podcastPic.css("height"));
 			podcastPic.find("img").css("height", "100%");
 			podcastPic.find("img").css("width", "100%");
 			stackEpisodeCover = false;
