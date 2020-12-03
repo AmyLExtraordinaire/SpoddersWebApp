@@ -15,6 +15,30 @@ var access_token = params.access_token,
   refresh_token = params.refresh_token,
   error = params.error;
 
+
+
+function toggleDisplay(jquery, tempHeight, resizeEpsRequest) {
+  if (jquery.css("opacity") != 0) {
+    jquery.css("transitionDuration", "0s");
+    jquery.css("opacity", 0);
+    jquery.css("height", 0);
+    jquery.css("overflow-y", "hidden");
+  }
+  else {
+    //console.log(tempHeight)
+    jquery.css("transitionDuration", "0.5s");
+
+    setTimeout(function() {
+      jquery.css("height", tempHeight);
+      jquery.css("opacity", 1);
+    }, 100);
+    setTimeout(function() {
+      jquery.css("overflow-y", "auto");
+      if(resizeEpsRequest) {resizeEpisodes(true); };
+    }, 150);
+  }
+}
+
 // TODO: why is this commented, is this so we could make the templated version?
 // Grab divs from the DOM for later use
 //var episodeBlock = $("#episodeList").html();
@@ -58,6 +82,9 @@ $("document").ready(function () {
   if (error) {
     alert("Problem");
   } else {
+    let tempRowHeight = $(".row").css("height");
+    toggleDisplay($(".row"));
+
     if (access_token) {
       //$(".loginPage").hide();
 
@@ -78,5 +105,8 @@ $("document").ready(function () {
       document.getElementById("mainBody").style.display = "none";
       document.getElementById("logoutButton").style.display = "none";
     }
+
+
+    toggleDisplay($(".row"), tempRowHeight);
   }
 });

@@ -26,7 +26,7 @@ var showBlock = `<div id="showID" class="container-fluid well show-block" onclic
 var episodeTile = `<div class='draggableTile' id='episodeID' oncontextmenu="event.preventDefault();rightclickmenu('episodeID', true);"> 
                             <div class='draggableTileContent'>
                                 <div class="dragCover" id="showID">
-                                    <img src="insertPicHere" onerror=this.src="images/show.jpg">
+                                    <img src="insertPicHere" onerror=this.src="images/show.jpg" title="showName">
                                 </div>
                                 <div class="dragText">
                                     TempText
@@ -64,7 +64,7 @@ function getUserPodcasts(access_token) {
       let podNum = 0;
       sortedPods.forEach(function (element) {
         //console.log(element);
-        PrioLevels[(element.show.id)] = 1;
+        PrioLevels[(element.show.id)] = [1,element.show.name];
         var currentPod = showBlock.replace(
           '<span class="spotShow">Spotify show</span>',
           "<span class='spotShow'>" + element.show.name + "</span>"
@@ -154,6 +154,7 @@ function getUserPodcasts(access_token) {
               tempTile = tempTile.replace("TempText", el.name);
               tempTile = tempTile.replace("insertPicHere", element.show.images[2].url);
               tempTile = tempTile.replace("showID", element.show.id);
+              tempTile = tempTile.replace("showName", element.show.name);
               $("#draggableContainer").append(tempTile);
             })
             $("#draggable_js").remove();
@@ -170,6 +171,7 @@ function getUserPodcasts(access_token) {
             if (element == sortedPods[sortedPods.length - 1]) {
               let first = $("#" + sortedPods[0].show.id);
               first.trigger("onclick");
+              //setTimeout(function() {}, 100);
               //firstTime = false;
             }
           }

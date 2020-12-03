@@ -47,6 +47,7 @@
     bottom: 0px;
     width: 100%;
     background-color: var(--debug);
+    display: none;
 }
 
 /* Set gray background color and 100% height */

@@ -4,6 +4,8 @@
 }
 .col-sm-4 {
     padding-top: 0;
+    padding-right: 4px;
+  padding: 0 15px;
     /*background: linear-gradient(0deg, var(--bkgrnd-grey1) 0%, var(--bkgrnd-grey2) 10%, var(--bkgrnd-grey3) 15%, var(--bkgrnd-grey3) 100%);*/
 }
 
@@ -12,6 +14,8 @@
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
     width: 100%;
+    margin: 0 15px;
+    padding-right: 15px;
 }
 
 #myQueueHeader {
@@ -22,12 +26,20 @@
     display: block;
     /*position: absolute;
     top: 0;*/
-    width: 100%;
+    padding: 5px 0 0 5px;
+    width: calc(100% - 10px);
+}
+
+#myQueueHeader img {
+    height: 80%;
+    width: auto;
+    position: relative;
+    bottom: 1px;
 }
 
 #myQueueHeader hr {
     height: 1px;
-    background-color: var(--bkgrnd-grey1);
+    background-color: var(--text-grey);
     border: none;
 }
 
@@ -63,10 +75,10 @@
 }
 
 #rightPanelDivider {
-    margin: 0px;
+    margin: 0;
     padding-top: 0px;
     padding-bottom: 0px;
-    border-color: rgb(127, 127, 127)
+    border-color: rgb(127, 127, 127);
 }
 
 *, *:before, *:after {
@@ -75,13 +87,13 @@
 
 #draggableContainer {
     overflow-y: auto;
-    height: calc(100% - 40px - 48px - 16px);
+    height: calc(100% - 40px - 48px - 16px - 10px);
     /*position: absolute;
     top: 40px;
     bottom: 48px;*/
-    width: 100%;
+    width: calc(100% - 8px);
     margin-bottom: 8px;
-    padding-top: 8px;
+    margin-top: 18px;
 }
 
 .draggableTile {

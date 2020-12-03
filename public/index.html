@@ -37,9 +37,7 @@
                         <a href="#" onclick="logout()" id="logoutButton">Log Out</a>
                     </li>
                     <!-- Login button -->
-                    <li>
-                        <a href="#" onclick="authorize()" id="loginButton">Log In</a>
-                    </li>
+                    <li><a href="#" onclick="authorize()" id="loginButton">Log In</a></li>
                 </ul>
             </div>
         </div>
@@ -120,7 +118,7 @@
                 <div id="thePodcast">
                     <div class="aPodcast">
                         <div class="tS-title">
-                            <div id="title">
+                            <div class="title">
                                 <div id="green">&#9679</div>
                                 Halo 4: Epilogue - Ur-Didact standing trial before the council
                             </div>
@@ -149,6 +147,7 @@
                     </div>
                     <hr class="theCast-line" id="theCast-line">
                 </div>
+                <hr class="theShow-line">
             </div>
 
             <!-- Right column -->
@@ -158,7 +157,7 @@
 
                     <div id="myQueueHeader">
                         My Queue
-                        <img src="/images/trash.png" onclick="trashQueue()" style="height: 40px; width: 40px">
+                        <img src="/images/trash.png" onclick="trashQueue()" title="Clear Queue">
                         <hr class="solid" id="rightPanelDivider">
                     </div>
 
@@ -218,7 +217,7 @@
     <script src="scripts/ordering.js"></script>
     <script src="scripts/sortBy.js"></script>
     <script src="scripts/trashQueue.js"></script>
-    <script src="scripts/podcastScrolling.js"></script>
+    <script src="scripts/intervalManualCSS.js"></script>
 </body>
 
 </html>

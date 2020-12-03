@@ -1,4 +1,5 @@
 .col-sm-3 {
+  padding: 0 15px;
     /*background: linear-gradient(0deg, var(--bkgrnd-grey1) 0%, var(--bkgrnd-grey2) 10%, var(--bkgrnd-grey3) 15%, var(--bkgrnd-grey3) 100%);*/
 }
 

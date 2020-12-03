@@ -19,14 +19,14 @@ var theShowBlock = `<div id="theShow-info" name="showID">
                     <div class="hidden-block" onclick="removeAllFromQueue()" id="RAFQ"><div class="green">&#9679</div> Remove entire podcast from queue</div>
                     <!--div class="hidden-block" onclick="clearQueue()" style="display: block"><div class="green">&#9679</div> Clear queue</div-->
                 </div>
-                <br>Priority: unknown<br>Sorted by: nothing
+                <br><!--Priority: unknown<br>Sorted by: nothing-->
             </div>
         </div>`;
 
 // Block for episodes list in the center column
 var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" onclick="selectCast('UNIQUEID')" oncontextmenu="event.preventDefault();rightclickmenu('UNIQUEID');">\n
             \t<div class="tS-title" id="T-UNIQUEID" >\n
-                \t\t<div id="title">\n
+                \t\t<div class="title">\n
                     \t\t\t<div id="green">&#9679</div><div id="yellow">&#9679</div>\n
                     \t\t\t Titlehere\n
                 \t\t</div>\n
@@ -37,6 +37,8 @@ var epBlock = `<div class="aPodcast" id="UNIQUEID" style="height=HEIGHTpx" oncli
             \t</div>\n
         </div>\n
         <hr class="theCast-line" id="theCast-line">\n\n`;
+
+let stackEpisodeCover = false;
 
 // converts date string from "YYYY-MM-DD" to "(Month) (Day#), (Year#)"
 function numDate2strDate(date) {
@@ -70,6 +72,8 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
       Authorization: "Bearer " + access_token,
     },
     success: function (response) {
+    	let tempHeight = $(".col-sm-5").css("height");
+    	toggleDisplay($(".col-sm-5"));
 	    // Build episode info block and remove template code
 	    let episodes = response.items;
 	    let sortOrder;
@@ -86,12 +90,18 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 	    document.getElementById("thePodcast").innerHTML = "";
 
 	    // Build upper block and update it onto the DOM
-	    console.log()
 		let coverBlock = theShowBlock.replace("show.gif", episodes[0].images[1].url) 
 			.replace("P-Title", showName)		.replace("(#) Songs", numberOfEpisodes + " Episodes")
-			.replace("(channel)", podcastBy)	.replace("showID", showID)
-			.replace("unknown", priority)		.replace("nothing", sortOrder);
+			.replace("(channel)", podcastBy)	.replace("showID", showID);
+			//.replace("unknown", priority)		.replace("nothing", sortOrder)
+
+		//console.log($("#" + showID).find(".dropdown"))
 		$("#theCover").html(coverBlock);
+		let options = $("#" + showID).find(".dropdown");
+		for (var i = 0; i < options.length; i++) {
+			//console.log(options[i].outerHTML);
+			$("#text").append(options[i].outerHTML + "&nbsp");
+		}
 
 		// Add individual episode blocks to the podcast episodes container $(#"thePodcast")
 		let timer = 0; // stores the sum duration of all the podcast episodes loaded
@@ -105,6 +115,7 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 	        $("#thePodcast").append(currentEp);
 	        // this next one sets the height of each episode block manually so that they can stack on each other while not leaving excess space in them
 	        $("#" + episode.id).height($("#T-" + episode.id).height());
+	        $("#" + episode.id).disableSelection();
 
 	        timer += episode.duration_ms;
 	    });
@@ -134,16 +145,35 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 			// dispalys the green dot of that episode in the $(#"thePodcast") div
 			$("#" + draggableEpisodes.eq(i)[0].id).find("#green").css("display", "inline-block")
 		}
+		//console.log("switch");
+		stackEpisodeCover = false;
 
-		//resize the cover picture if nessisary
 		let podcastPic = $("#theShow-pic");
 		let podcastInfoText = $("#text");
 		let podcastInfo = $("#theShow-info");
-		console.log(parseInt(podcastInfo.css("width")), parseInt(podcastPic.css("height")), parseInt(podcastInfoText.css("width")),
-			parseInt(podcastInfo.css("width")) - parseInt(podcastPic.css("width")) - parseInt(podcastInfoText.css("width")))
-		if (parseInt(podcastInfo.css("width")) - parseInt(podcastPic.css("width")) - parseInt(podcastInfoText.css("width")) < 0) {
-			console.log("yup");
-		}
+
+		podcastPic.css("height", (parseFloat(podcastInfoText.css("height")) + parseFloat(podcastInfoText.css("margin-top"))).toString(10) + "px");
+		podcastPic.css("width", podcastPic.css("height"));
+
+		$(".row.content").css("display", "block");
+
+
+    	toggleDisplay($(".col-sm-5"), tempHeight, true);
+		
     }
   });
 }
+
+$.fn.extend({
+    disableSelection: function() {
+        this.each(function() {
+            this.onselectstart = function() {
+                return false;
+            };
+            this.unselectable = "on";
+            $(this).css('-moz-user-select', 'none');
+            $(this).css('-webkit-user-select', 'none');
+        });
+        return this;
+    }
+});
