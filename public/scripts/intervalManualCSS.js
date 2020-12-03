@@ -24,13 +24,15 @@ let resizeCoverPic = function() {
 		if(podcastPic.find("img").css("height") != (podcastInfoHeight).toString(10)+"px") {
 			podcastPic.css("width", "100%");
 			podcastPic.css("height", "auto");
-			podcastPic.find("img").css("height", (podcastInfoHeight).toString(10)+"px")
+			podcastPic.find("img").css("height", (podcastInfoHeight).toString(10)+"px");
+			podcastPic.find("img").css("width", (podcastInfoHeight).toString(10)+"px");
 		}
 		else if (stackEpisodeCover && (parseFloat(podcastPic.css("height")) + oversize - 0) > (podcastInfoHeight)) {
 			console.log("here");
 			podcastPic.css("width", "auto");
 			podcastPic.css("height", (podcastInfoHeight).toString(10)+"px");
 			podcastPic.find("img").css("height", "100%");
+			podcastPic.find("img").css("width", "100%");
 			stackEpisodeCover = false;
 		}
 	}
@@ -43,6 +45,9 @@ let resizeCoverPic = function() {
 		//console.log("nep");
 		podcastPic.css("height", (parseFloat(podcastPic.css("height")) + oversize - 1).toString(10) + "px");
 		podcastPic.css("width", podcastPic.css("height"));
+
+		podcastPic.children()[0].css("width", podcastPic.css("height"));
+		console.log(podcastPic.children()[0].css("width"))
 	}
 
 	//growing
@@ -51,6 +56,13 @@ let resizeCoverPic = function() {
 		//console.log("grw", oversize)
 		podcastPic.css("height", (parseFloat(podcastPic.css("height")) + oversize - 1).toString(10) + "px");
 		podcastPic.css("width", podcastPic.css("height"));
+
+		podcastPic.children()[0].css("width", podcastPic.css("height"));
+		console.log(podcastPic.children()[0].css("width"))
+	}
+	else {
+		podcastPic.find("img").css("height", "100%");
+		podcastPic.find("img").css("width", "100%");
 	}
 	//console.log(podcastPic.css("height"));
 
