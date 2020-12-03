@@ -20,9 +20,13 @@ function rightclickmenu(id, force=false) {
 		.css("left", "calc(var(--ft-sz)*-0.5/4 + " + xpos.toString() + "px)")
 		.eq(0).attr("name", id); // stores the podcast (not episode) ID for later
 
+	// gets the green and yellow dots from the ith episode of the podcast
+	let greenDot = $("#" + id + ".aPodcast").find("#green");
+	let yellowDot = $("#" + id + ".aPodcast").find("#yellow");
+
 	// if the green dot is not visible for this podcast
 		// display the "Add this podcast to My Queue" option text $("#manip")
-	if ($("#" + id + ".aPodcast").find("#green").css("display") == "none") {
+	if (greenDot.css("display") == "none") {
 		$("#manip")[0].innerText = "Add this podcast to My Queue";
 		//$("#select").css("display", "block");
 	}
@@ -31,17 +35,27 @@ function rightclickmenu(id, force=false) {
 		$("#manip")[0].innerText = "Remove this podcast from My Queue";
 		//$("#select").css("display", "none");
 	}
-
 	// if the yellow dot is not visible for this podcast
 		// display the menu option $("#manip")
-	if ($("#" + id + ".aPodcast").find("#yellow").css("display") == "none") {
-		//$("#select")[0].innerText = "Select podcast";
+	if (yellowDot.css("display") == "none") {
+		//$("#select")[0].innerText = "Add this podcast to My Queue";
+		//$("#select").css("display", "block");
 		$("#manip").css("display", "block");
 	}
 	// otherwise don't display it
 	else {
-		//$("#select")[0].innerText = "Deselect Podcast";
+		//$("#select").css("display", "none");
 		$("#manip").css("display", "none");
+	}
+
+	console.log(yellowDot.css("display") == "inline-block");
+	if (yellowDot.css("display") == "inline-block") {
+		$("#select")[0].innerText = "Add all selected episodes to queue";
+		$("#manip").css("display", "block");
+		$("#select").css("display", "block");
+	}
+	else {
+		$("#select").css("display", "none");
 	}
 
 	// if force = true, display the menu option and the text "Remove this podcast from My Queue"
@@ -102,6 +116,12 @@ document.getElementById("manip").addEventListener("click", e => {
 		manipulateQueue(episodeID, false);
 	}
 })
+
+document.getElementById("select").addEventListener("click", function() {
+	let episodeID = $("#rightClick").eq(0).attr("name");
+	let yellowDot = $("#" + episodeID + ".aPodcast").find("#yellow");
+	addSelectedToQueue();
+});
 
 // when a podcast episode is clicked this is called
 function selectCast(id) {

@@ -27,7 +27,7 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 		// debugging purposes only, normally disabled
 		if (verbose) { console.log("Added '" + episodeTitle + "' to the queue"); }
 
-		$("#draggableContainer").append(text); // add the block (episode) to the queue
+		$("#draggableContainer").append(text.replaceAll("●","")); // add the block (episode) to the queue
 
 		greenDot.css("display", "inline-block"); 	// force-displays the green dot
 		yellowDot.css("display", "none");			// force hides the yellow dot
@@ -42,6 +42,8 @@ function manipulateQueue(episodeID, append, text="", verbose=false) {
 
 		// removes the animated subdiv because it has no purpose anymore
 		setTimeout(function() { $("#deleteMe" + episodeID).remove(); }, 1000);
+		$("#" + episodeID + ".draggableTile").attr("name", )
+		console.log($("#" + episodeID + ".draggableTile").attr("name"));
 	}
 	// otherwise the function was called to remove and element to the queue
 	else {
