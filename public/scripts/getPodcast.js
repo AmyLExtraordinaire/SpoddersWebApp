@@ -64,7 +64,7 @@ function getUserPodcasts(access_token) {
       let podNum = 0;
       sortedPods.forEach(function (element) {
         //console.log(element);
-        PrioLevels[(element.show.id)] = 1;
+        PrioLevels[(element.show.id)] = [1,element.show.name];
         var currentPod = showBlock.replace(
           '<span class="spotShow">Spotify show</span>',
           "<span class='spotShow'>" + element.show.name + "</span>"
