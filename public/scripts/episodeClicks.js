@@ -121,7 +121,7 @@ document.getElementById("select").addEventListener("click", function() {
 	let menu = $("#rightClick"); 		// gets the menu
 	let episodeID = $("#rightClick").eq(0).attr("name");
 	let yellowDot = $("#" + episodeID + ".aPodcast").find("#yellow");
-	menu.css("display", "none");
+	//menu.css("display", "none");
 	addSelectedToQueue();
 });
 
