@@ -166,6 +166,7 @@ function getEpisodes(showID, showName, numberOfEpisodes, podcastBy, sortBy) {
 }
 
 function loadMoreEpisodes() {
+	$(".col-sm-5 p")[0].innerText = "Getting More Episodes";
 	let currentPod = $("#theShow-info")[0].getAttribute("name");
 	let numEp = ($("#thePodcast").children().length)/2 + 0.5
 	let episodeList = $("#thePodcast").children();
@@ -202,6 +203,8 @@ function loadMoreEpisodes() {
 		sendingURL += numEp;
 
 	}
+	$(".col-sm-5 p")[0].innerText = "Getting More Episodes...";
+	$(".col-sm-5 p").addClass("noHover");
 	
 	$("#thePodcast").append('<hr class="theCast-line" id="theCast-line">');
 	$.ajax({
@@ -218,8 +221,8 @@ function loadMoreEpisodes() {
 			let timer = 0; // stores the sum duration of all the podcast episodes loaded
 			let tempDate1 = new Date(episodes[0].release_date);
 			let tempDate2 = new Date(episodes[1].release_date);
-			console.log(date1 < date2)
-			console.log(tempDate1 < tempDate2)
+			//console.log(date1 < date2)
+			//console.log(tempDate1 < tempDate2)
 
 			if (date1 < date2) {
 				if (!(tempDate1 < tempDate2)) {
@@ -233,7 +236,7 @@ function loadMoreEpisodes() {
 
     		tempDate1 = new Date(episodes[0].release_date);
 			tempDate2 = new Date(episodes[1].release_date);
-			console.log(tempDate1 < tempDate2)
+			//console.log(tempDate1 < tempDate2)
 			episodes.forEach(function (episode) {
 	        	var currentEp = epBlock
 	        		.replace(" Titlehere", " " + episode.name)	.replaceAll("UNIQUEID", episode.id)
@@ -283,6 +286,8 @@ function loadMoreEpisodes() {
 			// dispalys the green dot of that episode in the $(#"thePodcast") div
 				$("#" + draggableEpisodes.eq(i)[0].id).find("#green").css("display", "inline-block")
 			}
+
+			$(".col-sm-5 p")[0].innerText = "Load More Episodes";
 
     	}
 	})
