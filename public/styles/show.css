@@ -176,19 +176,6 @@
 	right: 0;
 }
 
-/*#tS-released {
-	display: inline-block;
-	position: absolute;
-	right: var(--col3);
-	background-color: var(--debug);
-}
-
-#tS-duration {
-	display: inline-block;
-	position: absolute;
-	right: var(--col4);
-	background-color: var(--debug);
-}*/
 #tS-released {
 	display: inline-block;
 	float: right;
@@ -436,4 +423,15 @@ hr.theCast-line {
 #text ul.dropdown-menu li.newToOld {
     border-radius: calc(8px + var(--ft-sz));
     background-color: none;
+}
+
+.col-sm-5 p {
+	width: calc(100% - 4*(var(--ft-sz)*(9.75/16)));
+	background-color: var(--debug);
+	margin-left: calc(var(--ft-sz)*(9.75/16)*2.5);
+	padding-left: 0;
+}
+
+.col-sm-5 p:hover {
+	color: var(--text-white);
 }
