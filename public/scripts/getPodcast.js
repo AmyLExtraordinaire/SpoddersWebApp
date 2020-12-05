@@ -45,7 +45,7 @@ var PrioLevels = {};
 function getUserPodcasts(access_token) {
   // Ajax call for user shows with access token
   $.ajax({
-    url: "https://api.spotify.com/v1/me/shows",
+    url: "https://api.spotify.com/v1/me/shows?limit=50",
     headers: {
       Authorization: "Bearer " + access_token,
     },
