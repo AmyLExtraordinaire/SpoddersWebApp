@@ -1,5 +1,5 @@
-# eecs-493_FinalProject
-don't even know what we're doing yet
+# Spodders Web App
+Web app using the spotify API to help you manage your podcasts.
 
 # Instructions: 
 
